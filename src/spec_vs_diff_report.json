@@ -1,0 +1,29 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T11:43:13.676Z",
+  "summary": "REQ-21 appears implemented by removing the footer attribution block; Footer.tsx now renders only the copyright and disclaimer. No other requested changes are evident. Two ancillary metadata/state files were modified without being requested in the BuildRequest.",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Modified project metadata/state (project_state.json) including projectStateVersion and summary, which was not requested and is outside the scope of removing footer attribution.",
+      "reason": "BuildRequest only asked to remove the “Built with … using caffeine.ai” attribution from the footer UI and explicitly listed no other goals; updating project state/summary is not part of REQ-21.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Updated frontend file summary metadata (frontend-file-summaries.txt), which was not requested as part of removing the footer attribution.",
+      "reason": "BuildRequest focuses solely on UI removal of caffeine.ai attribution; updating a documentation/summary file is not requested.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/footer/Footer.tsx",
+    "project_state.json"
+  ]
+}

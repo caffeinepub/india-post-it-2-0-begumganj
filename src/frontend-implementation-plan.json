@@ -1,0 +1,23 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Remove caffeine.ai attribution from footer",
+  "requirements": [
+    {
+      "id": "REQ-21",
+      "summary": "Remove the “Built with … using caffeine.ai” attribution block (heart icon + external link) from the footer while leaving all other footer content unchanged.",
+      "acceptanceCriteria": [
+        "The footer no longer renders the attribution paragraph containing the text “Built with” / “using” and the “caffeine.ai” link.",
+        "No other footer content is removed or changed (copyright and disclaimer remain visible and unchanged).",
+        "There is no remaining visible “caffeine.ai” branding text/link anywhere in the app UI."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/footer/Footer.tsx",
+          "operation": "modify",
+          "description": "Remove the attribution <p> that contains “Built with … using caffeine.ai”, including the Heart icon and external caffeine.ai link; also remove any now-unused variables/imports (e.g., Heart import and appIdentifier) while keeping the copyright and disclaimer blocks unchanged."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-remove-the-footer-attribution-text-link-that-reads-built-with-using-caffeine-ai-including-the-heart-icon-and-the-external-link-to-caffeine-ai-so-it-is-no-longer-displayed-anywhere-in-the-ui",
+      "featureTitle": "Remove the footer attribution text/link that reads “Built with … using caffeine.ai” (including the heart icon and the external link to caffeine.ai) so it is no longer displayed anywhere in the UI.",
+      "files": [
+        "frontend/src/components/footer/Footer.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

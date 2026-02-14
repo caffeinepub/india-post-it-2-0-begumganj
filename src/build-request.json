@@ -1,0 +1,47 @@
+{
+  "kind": "build_request",
+  "title": "Remove “Built with using caffeine.ai” attribution from footer",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-21",
+      "text": "Remove the footer attribution text/link that reads “Built with … using caffeine.ai” (including the heart icon and the external link to caffeine.ai) so it is no longer displayed anywhere in the UI.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "remove-'Built with using caffeine.ai'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The footer no longer renders the attribution paragraph containing the text “Built with” / “using” and the “caffeine.ai” link.",
+        "No other footer content is removed or changed (copyright and disclaimer remain visible and unchanged).",
+        "There is no remaining visible “caffeine.ai” branding text/link anywhere in the app UI."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for any user-facing text.",
+    "Do not edit files under frontend/src/components/ui or any other paths listed as immutable in SYSTEM_CONTEXT."
+  ],
+  "nonGoals": [
+    "Changing footer styling beyond what is necessary to remove the attribution block.",
+    "Any backend changes or Motoko canister changes."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

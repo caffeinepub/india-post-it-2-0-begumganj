@@ -1,2 +1,3 @@
-# india-post-it-2-0-begumganj
-Exported from Caffeine project: India Post IT 2.0 (Begumganj)
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
