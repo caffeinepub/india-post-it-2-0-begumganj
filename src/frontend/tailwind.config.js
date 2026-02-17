@@ -82,11 +82,36 @@ export default {
             opacity: "0",
           },
         },
+        "smooth-zoom-in": {
+          "0%": {
+            transform: "scale(0.9)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "scale(1)",
+            opacity: "1",
+          },
+        },
+        "smooth-zoom-out": {
+          "0%": {
+            transform: "scale(1)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "scale(0.9)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "ippb-pulse-ring": "ippb-pulse-ring 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "smooth-zoom-in": "smooth-zoom-in 0.4s ease-in-out",
+        "smooth-zoom-out": "smooth-zoom-out 0.4s ease-in-out",
+      },
+      transitionDuration: {
+        '400': '400ms',
       },
     },
   },

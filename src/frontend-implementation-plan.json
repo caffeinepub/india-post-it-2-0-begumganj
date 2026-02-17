@@ -1,114 +1,30 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Premium bio overlay animation + content refresh, non-pink animated text theme, and profile rating prompt",
+  "title": "India Post Portal — Publish current draft UI to production",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Refine the Branch Postmaster profile overlay to feel smoother and more premium (open/close transitions, glow, and typewriter reveal) while preserving all existing interactions and sounds.",
+      "summary": "Ensure the current draft UI (including smooth-zoom profile image preview overlay behavior) is the version that gets promoted to the live/production build.",
       "acceptanceCriteria": [
-        "Opening the profile overlay animates in smoothly (no abrupt appearance) and closing animates out smoothly.",
-        "Existing behaviors still work: click card opens; close button, backdrop click, and keyboard interactions still close; click/close sounds still play.",
-        "Typewriter text animation remains readable and does not jitter or reflow excessively while typing."
+        "The production/live URL serves the same UI/behavior as the latest draft build.",
+        "The profile image full-screen preview overlay uses the smooth zoom + fade animation on open and close, and still supports backdrop click, Escape key, and close button to dismiss."
       ],
       "file_operations": [
+        {
+          "path": "frontend/src/components/profile/ProfileImagePreviewOverlay.tsx",
+          "operation": "modify",
+          "description": "Harden and align the profile image full-screen preview overlay behavior to the intended production behavior: keep smooth zoom + fade on open/close, ensure Escape/backdrop/close button dismissal remains reliable, and prevent event bubbling/double-close (e.g., stopPropagation on the close button)."
+        },
         {
           "path": "frontend/src/components/profile/BpmProfileCard.tsx",
           "operation": "modify",
-          "description": "Implement premium open/close transitions for the overlay (mount/unmount with exit animation), enhance overlay glow usage, and ensure keyboard close behavior (ESC) remains supported while keeping click-to-open, backdrop close, and tap/close sounds intact."
+          "description": "Verify the profile image preview overlay wiring still matches the latest draft behavior (open on image click; dismiss via backdrop/Escape/close button) and that no regressions are introduced by the overlay adjustments."
         },
         {
-          "path": "frontend/src/components/profile/TypewriterNeon.tsx",
-          "operation": "modify",
-          "description": "Stabilize the typewriter rendering to reduce layout jitter (consistent line containers/cursor placement) and keep the typing reveal smooth and readable without removing the existing typewriter interaction."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add/adjust CSS utility animations for the profile overlay (premium enter/exit easing, improved glow animation) and typewriter cursor visuals to support smoother perceived motion."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Update the profile overlay contact number to display exactly 7771991108 (no masking).",
-      "acceptanceCriteria": [
-        "The profile details (typewriter biodata) displays '7771991108' as the contact number.",
-        "No masked placeholder contact number remains in the profile overlay content."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/profile/BpmProfileCard.tsx",
-          "operation": "modify",
-          "description": "Replace the contact number in the typed biodata lines with the exact value '7771991108' and ensure any previously-masked placeholder is removed from the overlay content."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Rewrite and expand the profile overlay text in English to better highlight IPPB expertise, clear insurance explanations, and a friendly/helpful tone (update both typed lines and the longer paragraph).",
-      "acceptanceCriteria": [
-        "Profile overlay text is in English and clearly communicates: IPPB expertise, ability to explain insurance, and a friendly/helpful personality.",
-        "Both the typewriter lines and the longer paragraph are updated accordingly (not only one section)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/profile/BpmProfileCard.tsx",
-          "operation": "modify",
-          "description": "Rewrite the typewriter biodata lines and the additional descriptive paragraph to present the person as an IPPB expert who explains insurance clearly with a friendly, helpful tone (English)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Remove pink text/gradients across the UI and replace them with a readable animated blue/yellow/black treatment on the dark theme, including IPPB highlight labels and formerly pink result/gradient text styles.",
-      "acceptanceCriteria": [
-        "No prominent text in the UI appears pink anymore (including gradient text that previously contained pink).",
-        "Formerly-pink highlighted text uses an animated blue/yellow/black treatment and remains readable against the dark theme.",
-        "IPPB highlight labels that used the pink/gold style are updated to the new non-pink animated style."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Replace pink-related CSS variables and utilities (e.g., pink bolt/result text, pink/blue animated gradient text, RBP title gradient, gallery close gradient, and IPPB pink/gold label style) with a live animated blue/yellow/black treatment while preserving readability on the dark background."
-        },
-        {
-          "path": "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "operation": "modify",
-          "description": "Update IPPB highlight label usage to the new non-pink animated text utility class so the in-card emphasized labels no longer render with any pink styling."
-        },
-        {
-          "path": "frontend/src/components/calculator/LiveCalculator.tsx",
-          "operation": "modify",
-          "description": "Ensure the non-RBP calculator result text no longer uses any pink styling by switching to the new animated blue/yellow/black treatment (or updated utility class) while keeping the result prominent and readable."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Show a 1–5 star rating prompt when the profile overlay is closed, submit the rating via backend calls, and display the submitted/last rating to the user (persisted across refresh).",
-      "acceptanceCriteria": [
-        "Closing the profile overlay triggers a rating prompt UI.",
-        "User can submit a rating (1–5).",
-        "After submission, the app clearly shows the submitted rating to the user (e.g., 'Thanks — you rated 4/5' and/or 'Last rating: 4/5').",
-        "Rating is persisted via backend calls and can be fetched again after a page refresh."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/hooks/useProfileRating.ts",
+          "path": "frontend/DEPLOYMENT.md",
           "operation": "create",
-          "description": "Create a React hook that uses the existing actor (via useActor) and React Query to fetch the last rating for the profile and submit a new rating (1–5), including basic loading/error state handling."
-        },
-        {
-          "path": "frontend/src/components/profile/ProfileRatingDialog.tsx",
-          "operation": "create",
-          "description": "Create a rating prompt dialog (1–5 stars) that appears after closing the profile overlay, submits the rating via the hook, and shows a clear confirmation plus the last submitted rating. Verify the shadcn-ui component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/profile/BpmProfileCard.tsx",
-          "operation": "modify",
-          "description": "Wire the rating prompt to trigger specifically on overlay close (close button, backdrop click, and keyboard dismiss). Ensure the close sound still plays, show the rating dialog after the overlay exit animation, and display the last submitted rating to the user on the card and/or in the overlay area."
+          "description": "Add a short production promotion checklist to ensure the live deployment is built from the latest draft UI code (include steps aligned with the repo’s deployment tooling; use the github-export-icp-cli templates/scripts where applicable). Verify the component's usage instructions before implementing."
         }
       ]
     }

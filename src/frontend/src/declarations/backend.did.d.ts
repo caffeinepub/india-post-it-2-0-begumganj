@@ -10,7 +10,11 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface Profile { 'username' : string, 'description' : string }
+export interface Profile {
+  'username' : string,
+  'owner' : [] | [Principal],
+  'description' : string,
+}
 export interface ProfileRating {
   'ratedBy' : Principal,
   'timestamp' : Time,
@@ -25,7 +29,10 @@ export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createProfile' : ActorMethod<[string, string], undefined>,
+  'deleteProfile' : ActorMethod<[string], undefined>,
+  'deleteRating' : ActorMethod<[string], undefined>,
   'getAllProfileRatings' : ActorMethod<[], Array<[string, ProfileRating]>>,
+  'getAllProfiles' : ActorMethod<[], Array<[string, Profile]>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getProfile' : ActorMethod<[string], [] | [Profile]>,
@@ -34,6 +41,7 @@ export interface _SERVICE {
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'submitRating' : ActorMethod<[string, bigint], undefined>,
+  'updateProfile' : ActorMethod<[string, string], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

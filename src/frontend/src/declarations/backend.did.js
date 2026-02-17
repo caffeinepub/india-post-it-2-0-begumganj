@@ -19,19 +19,27 @@ export const ProfileRating = IDL.Record({
   'timestamp' : Time,
   'rating' : IDL.Nat,
 });
-export const UserProfile = IDL.Record({ 'bio' : IDL.Text, 'name' : IDL.Text });
 export const Profile = IDL.Record({
   'username' : IDL.Text,
+  'owner' : IDL.Opt(IDL.Principal),
   'description' : IDL.Text,
 });
+export const UserProfile = IDL.Record({ 'bio' : IDL.Text, 'name' : IDL.Text });
 
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'createProfile' : IDL.Func([IDL.Text, IDL.Text], [], []),
+  'deleteProfile' : IDL.Func([IDL.Text], [], []),
+  'deleteRating' : IDL.Func([IDL.Text], [], []),
   'getAllProfileRatings' : IDL.Func(
       [],
       [IDL.Vec(IDL.Tuple(IDL.Text, ProfileRating))],
+      ['query'],
+    ),
+  'getAllProfiles' : IDL.Func(
+      [],
+      [IDL.Vec(IDL.Tuple(IDL.Text, Profile))],
       ['query'],
     ),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
@@ -46,6 +54,7 @@ export const idlService = IDL.Service({
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'submitRating' : IDL.Func([IDL.Text, IDL.Nat], [], []),
+  'updateProfile' : IDL.Func([IDL.Text, IDL.Text], [], []),
 });
 
 export const idlInitArgs = [];
@@ -62,19 +71,27 @@ export const idlFactory = ({ IDL }) => {
     'timestamp' : Time,
     'rating' : IDL.Nat,
   });
-  const UserProfile = IDL.Record({ 'bio' : IDL.Text, 'name' : IDL.Text });
   const Profile = IDL.Record({
     'username' : IDL.Text,
+    'owner' : IDL.Opt(IDL.Principal),
     'description' : IDL.Text,
   });
+  const UserProfile = IDL.Record({ 'bio' : IDL.Text, 'name' : IDL.Text });
   
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'createProfile' : IDL.Func([IDL.Text, IDL.Text], [], []),
+    'deleteProfile' : IDL.Func([IDL.Text], [], []),
+    'deleteRating' : IDL.Func([IDL.Text], [], []),
     'getAllProfileRatings' : IDL.Func(
         [],
         [IDL.Vec(IDL.Tuple(IDL.Text, ProfileRating))],
+        ['query'],
+      ),
+    'getAllProfiles' : IDL.Func(
+        [],
+        [IDL.Vec(IDL.Tuple(IDL.Text, Profile))],
         ['query'],
       ),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
@@ -89,6 +106,7 @@ export const idlFactory = ({ IDL }) => {
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'submitRating' : IDL.Func([IDL.Text, IDL.Nat], [], []),
+    'updateProfile' : IDL.Func([IDL.Text, IDL.Text], [], []),
   });
 };
 

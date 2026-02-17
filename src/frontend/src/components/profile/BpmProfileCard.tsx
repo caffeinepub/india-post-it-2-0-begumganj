@@ -2,20 +2,25 @@ import { useState } from 'react';
 import { X } from 'lucide-react';
 import { TypewriterNeon } from './TypewriterNeon';
 import { ProfileRatingDialog } from './ProfileRatingDialog';
+import { ProfileImagePreviewOverlay } from './ProfileImagePreviewOverlay';
 import { useClickSound } from '@/hooks/useClickSound';
 import { useProfileRating } from '@/hooks/useProfileRating';
 
 /**
- * BPM profile card with premium open/close animations, enhanced overlay transitions, and rating prompt on close.
+ * BPM profile card with premium open/close animations, enhanced overlay transitions, rating prompt on close, and click-to-enlarge profile image with live animation.
  * Displays IPPB expertise, insurance explanation skills, and friendly personality with updated contact number.
  */
 export function BpmProfileCard() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showRatingDialog, setShowRatingDialog] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [showImagePreview, setShowImagePreview] = useState(false);
   const { playTap, playClose } = useClickSound();
   const username = 'prabal-pratap';
   const { rating } = useProfileRating(username);
+
+  const profileImageSrc = '/assets/generated/profile-prabal-pratap.dim_1024x1024.png';
+  const profileImageAlt = 'Prabal Pratap - Branch Postmaster';
 
   const handleCardClick = () => {
     playTap();
@@ -33,6 +38,17 @@ export function BpmProfileCard() {
       // Show rating dialog after overlay closes
       setShowRatingDialog(true);
     }, 300);
+  };
+
+  const handleImageClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    playTap();
+    setShowImagePreview(true);
+  };
+
+  const handleImagePreviewClose = () => {
+    playClose();
+    setShowImagePreview(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -66,12 +82,13 @@ export function BpmProfileCard() {
           aria-label="View Branch Postmaster profile details"
         >
           <div className="flex flex-col md:flex-row items-center gap-6">
-            {/* Profile Image */}
+            {/* Profile Image - Clickable for Preview */}
             <div className="flex-shrink-0">
               <img
-                src="/assets/generated/profile-prabal-pratap.dim_1024x1024.png"
-                alt="Prabal Pratap - Branch Postmaster"
-                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-metallic-gold/30 shadow-official"
+                src={profileImageSrc}
+                alt={profileImageAlt}
+                onClick={handleImageClick}
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-metallic-gold/30 shadow-official cursor-pointer hover:scale-105 transition-transform duration-200"
               />
             </div>
 
@@ -129,9 +146,10 @@ export function BpmProfileCard() {
             {/* Profile Header */}
             <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
               <img
-                src="/assets/generated/profile-prabal-pratap.dim_1024x1024.png"
-                alt="Prabal Pratap"
-                className="w-32 h-32 rounded-full object-cover border-4 border-metallic-gold/30 shadow-official"
+                src={profileImageSrc}
+                alt={profileImageAlt}
+                onClick={handleImageClick}
+                className="w-32 h-32 rounded-full object-cover border-4 border-metallic-gold/30 shadow-official cursor-pointer hover:scale-105 transition-transform duration-200"
               />
               <div className="text-center md:text-left">
                 <h2 className="bpm-profile-name text-3xl mb-2">
@@ -161,6 +179,14 @@ export function BpmProfileCard() {
           </div>
         </div>
       )}
+
+      {/* Profile Image Preview Overlay */}
+      <ProfileImagePreviewOverlay
+        isOpen={showImagePreview}
+        onClose={handleImagePreviewClose}
+        imageSrc={profileImageSrc}
+        imageAlt={profileImageAlt}
+      />
 
       {/* Rating Dialog */}
       <ProfileRatingDialog

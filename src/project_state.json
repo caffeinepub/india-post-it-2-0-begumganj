@@ -1,92 +1,21 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Profile/bio page enhancements: improved animations, updated contact/bio content, color adjustments, and post-close rating capture.",
+  "summary": "New project",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-improve-the-branch-postmaster-bio-profile-overlay-animation-quality-and-overall-feel-open-close-transitions-overlay-glow-and-typewriter-reveal-to-look-smoother-and-more-premium-without-removing-existing-interactions-tap-close-sounds-click-to-open-backdrop-close",
-      "title": "Improve the Branch Postmaster bio/profile overlay animation quality and overall feel (open/close transitions, overlay glow, and typewriter reveal) to look smoother and more premium without removing existing interactions (tap/close sounds, click-to-open, backdrop close).",
+      "id": "feature-promote-the-current-deployed-draft-including-the-latest-smooth-zoom-profile-image-preview-behavior-to-the-live-production-deployment-so-end-users-see-the-updated-experience",
+      "title": "Promote the current deployed draft (including the latest smooth-zoom profile image preview behavior) to the live/production deployment so end users see the updated experience.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
-    },
-    {
-      "id": "feature-update-the-bio-profile-contact-number-shown-inside-the-profile-details-to-use-exactly-7771991108-including-removing-any-masked-placeholder-like-91-xxxx-xxxxxx",
-      "title": "Update the bio/profile contact number shown inside the profile details to use exactly: 7771991108 (including removing any masked placeholder like '+91-XXXX-XXXXXX').",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-rewrite-and-expand-the-bio-profile-text-content-to-better-present-the-person-as-an-ippb-expert-and-someone-who-explains-insurance-clearly-with-a-friendly-and-helpful-tone-english-text-this-includes-updating-both-the-typed-biodata-lines-and-the-additional-descriptive-paragraph-in-the-profile-overlay",
-      "title": "Rewrite and expand the bio/profile text content to better present the person as an IPPB expert and someone who explains insurance clearly, with a friendly and helpful tone (English text). This includes updating both the typed biodata lines and the additional descriptive paragraph in the profile overlay.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-all-ui-text-that-is-currently-styled-as-pink-including-pink-gradients-and-pink-highlight-labels-so-it-uses-a-live-animated-color-treatment-based-on-blue-yellow-and-black-no-pink-apply-this-to-existing-pink-text-styles-used-across-the-app-e-g-pink-bolt-result-text-pink-blue-gradient-text-and-ippb-pink-gold-labels-while-keeping-readability-on-the-dark-background",
-      "title": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink). Apply this to existing pink text styles used across the app (e.g., pink bolt/result text, pink/blue gradient text, and IPPB pink/gold labels) while keeping readability on the dark background.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-when-the-user-closes-the-bio-profile-overlay-show-a-rating-prompt-e-g-1-5-stars-and-capture-the-rating-so-it-is-visible-to-the-user-afterward-e-g-show-the-submitted-rating-confirmation-and-the-last-submitted-rating-persist-the-submitted-rating-in-the-backend-so-it-can-be-retrieved-later",
-      "title": "When the user closes the bio/profile overlay, show a rating prompt (e.g., 1–5 stars) and capture the rating so it is visible to the user afterward (e.g., show the submitted rating confirmation and the last submitted rating). Persist the submitted rating in the backend so it can be retrieved later.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
     }
   ],
-  "new_feature_requests": [
-    {
-      "id": "AR-1",
-      "summary": "Improve bio/profile page animation quality and overall animation experience.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Update displayed contact number to 7771991108 on the bio/profile.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Rewrite/expand bio description to better present: IPPB expert, insurance explanation, friendly/good person tone.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Change all pink text to blue/yellow/black with live animation effects.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "When closing the profile, show a rating prompt and capture/report the rating so the user can see/know it.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Extend the Motoko backend (single main actor) with stable storage and methods to record submitted profile ratings and to fetch the most recent rating and basic summary (at minimum: last rating value and timestamp).",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "status": "pending"
-    }
-  ],
+  "new_feature_requests": [],
   "projectName": "India Post Portal",
   "clarification_mode": "instant",
   "clarification_rounds": 0

@@ -1,114 +1,42 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-17T10:56:30.265Z",
+  "generatedAt": "2026-02-17T11:54:02.780Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 6,
-    "implemented": 5,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Improve the Branch Postmaster bio/profile overlay animation quality and overall feel (open/close transitions, overlay glow, and typewriter reveal) to look smoother and more premium without removing existing interactions (tap/close sounds, click-to-open, backdrop close).",
+        "summary": "Promote the current deployed draft (including the latest smooth-zoom profile image preview behavior) to the live/production deployment so end users see the updated experience.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/components/profile/ProfileImagePreviewOverlay.tsx",
           "frontend/src/components/profile/BpmProfileCard.tsx",
-          "frontend/src/components/profile/TypewriterNeon.tsx",
-          "frontend/src/index.css"
+          "frontend/DEPLOYMENT.md"
         ],
         "matchedFiles": [
-          "frontend/src/components/profile/BpmProfileCard.tsx",
-          "frontend/src/components/profile/TypewriterNeon.tsx",
-          "frontend/src/index.css"
+          "frontend/src/components/profile/ProfileImagePreviewOverlay.tsx"
         ]
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Update the bio/profile contact number shown inside the profile details to use exactly: 7771991108 (including removing any masked placeholder like '+91-XXXX-XXXXXX').",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/profile/BpmProfileCard.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/profile/BpmProfileCard.tsx"
-        ]
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Rewrite and expand the bio/profile text content to better present the person as an IPPB expert and someone who explains insurance clearly, with a friendly and helpful tone (English text). This includes updating both the typed biodata lines and the additional descriptive paragraph in the profile overlay.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/profile/BpmProfileCard.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/profile/BpmProfileCard.tsx"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink). Apply this to existing pink text styles used across the app (e.g., pink bolt/result text, pink/blue gradient text, and IPPB pink/gold labels) while keeping readability on the dark background.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "frontend/src/components/calculator/LiveCalculator.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "frontend/src/components/calculator/LiveCalculator.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "When the user closes the bio/profile overlay, show a rating prompt (e.g., 1–5 stars) and capture the rating so it is visible to the user afterward (e.g., show the submitted rating confirmation and the last submitted rating). Persist the submitted rating in the backend so it can be retrieved later.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/hooks/useProfileRating.ts",
-          "frontend/src/components/profile/ProfileRatingDialog.tsx",
-          "frontend/src/components/profile/BpmProfileCard.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/hooks/useProfileRating.ts",
-          "frontend/src/components/profile/ProfileRatingDialog.tsx",
-          "frontend/src/components/profile/BpmProfileCard.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Extend the Motoko backend (single main actor) with stable storage and methods to record submitted profile ratings and to fetch the most recent rating and basic summary (at minimum: last rating value and timestamp).",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
-    "backend/authorization/MixinAuthorization.mo",
-    "backend/authorization/access-control.mo",
     "backend/main.mo",
     "backend/migration.mo",
     "build-request.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/backend.d.ts",
     "frontend/src/backend.ts",
-    "frontend/src/components/calculator/LiveCalculator.tsx",
-    "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-    "frontend/src/components/profile/BpmProfileCard.tsx",
-    "frontend/src/components/profile/ProfileRatingDialog.tsx",
-    "frontend/src/components/profile/TypewriterNeon.tsx",
+    "frontend/src/components/profile/ProfileImagePreviewOverlay.tsx",
     "frontend/src/declarations/backend.did.d.ts",
     "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useProfileRating.ts",
-    "frontend/src/index.css",
-    "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

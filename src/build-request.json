@@ -1,126 +1,30 @@
 {
   "kind": "build_request",
-  "title": "Enhance Bio/Profile Animations, Update Bio Contact & Content, Replace Pink Text Colors, and Add Rating Prompt on Close",
+  "title": "Publish current build to production (make latest UI changes live)",
   "projectName": "India Post Portal",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Improve the Branch Postmaster bio/profile overlay animation quality and overall feel (open/close transitions, overlay glow, and typewriter reveal) to look smoother and more premium without removing existing interactions (tap/close sounds, click-to-open, backdrop close).",
-      "target": "frontend",
+      "text": "Promote the current deployed draft (including the latest smooth-zoom profile image preview behavior) to the live/production deployment so end users see the updated experience.",
+      "target": "unknown",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-3"
         ],
         "quotes": [
-          "bio profile animation ko or better karo"
+          "live kar do ise"
         ]
       },
       "acceptanceCriteria": [
-        "Opening the profile overlay animates in smoothly (no abrupt appearance) and closing animates out smoothly.",
-        "Existing behaviors still work: click card opens; close button, backdrop click, and keyboard interactions still close; click/close sounds still play.",
-        "Typewriter text animation remains readable and does not jitter or reflow excessively while typing."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Update the bio/profile contact number shown inside the profile details to use exactly: 7771991108 (including removing any masked placeholder like '+91-XXXX-XXXXXX').",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "-Contact no.-7771991108' karo"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The profile details (typewriter biodata) displays '7771991108' as the contact number.",
-        "No masked placeholder contact number remains in the profile overlay content."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Rewrite and expand the bio/profile text content to better present the person as an IPPB expert and someone who explains insurance clearly, with a friendly and helpful tone (English text). This includes updating both the typed biodata lines and the additional descriptive paragraph in the profile overlay.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "karo bio deta better karo ippb expert insorance explain better good person friendly etc."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Profile overlay text is in English and clearly communicates: IPPB expertise, ability to explain insurance, and a friendly/helpful personality.",
-        "Both the typewriter lines and the longer paragraph are updated accordingly (not only one section)."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink). Apply this to existing pink text styles used across the app (e.g., pink bolt/result text, pink/blue gradient text, and IPPB pink/gold labels) while keeping readability on the dark background.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "All text jo pink hai inhe blue,yellow,black live animation mai karo"
-        ]
-      },
-      "acceptanceCriteria": [
-        "No prominent text in the UI appears pink anymore (including gradient text that previously contained pink).",
-        "Formerly-pink highlighted text uses an animated blue/yellow/black treatment and remains readable against the dark theme.",
-        "IPPB highlight labels that used the pink/gold style are updated to the new non-pink animated style."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "When the user closes the bio/profile overlay, show a rating prompt (e.g., 1–5 stars) and capture the rating so it is visible to the user afterward (e.g., show the submitted rating confirmation and the last submitted rating). Persist the submitted rating in the backend so it can be retrieved later.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "close karne per raiting aane chaiye jo mujhe pata lag jana chaiye"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Closing the profile overlay triggers a rating prompt UI.",
-        "User can submit a rating (1–5).",
-        "After submission, the app clearly shows the submitted rating to the user (e.g., 'Thanks — you rated 4/5' and/or 'Last rating: 4/5').",
-        "Rating is persisted via backend calls and can be fetched again after a page refresh."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Extend the Motoko backend (single main actor) with stable storage and methods to record submitted profile ratings and to fetch the most recent rating and basic summary (at minimum: last rating value and timestamp).",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "raiting ... mujhe pata lag jana chaiye"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend provides a method to submit a rating (1–5) and stores it in stable state.",
-        "Backend provides a method to fetch the last submitted rating (and timestamp).",
-        "Invalid ratings outside 1–5 are rejected with a clear error."
+        "The production/live URL serves the same UI/behavior as the latest draft build.",
+        "The profile image full-screen preview overlay uses the smooth zoom + fade animation on open and close, and still supports backdrop click, Escape key, and close button to dismiss."
       ]
     }
   ],
-  "constraints": [
-    "Do not edit files under frontend/src/components/ui (read-only shadcn components); compose them instead.",
-    "Do not edit immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
-    "Backend must remain a single Motoko actor in backend/main.mo; add migration.mo only if needed for stable state upgrades."
-  ],
+  "constraints": [],
   "nonGoals": [
-    "Do not add third-party authentication providers (only Internet Identity is supported).",
-    "Do not add real-time/WebSocket features.",
-    "Do not add external databases or non-Motoko backend services."
+    "Do not add new features or change UI copy; this request is only to make the current version live."
   ],
   "imageRequirements": {
     "required": [],

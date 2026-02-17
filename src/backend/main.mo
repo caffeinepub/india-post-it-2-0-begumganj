@@ -4,11 +4,12 @@ import Principal "mo:core/Principal";
 import Runtime "mo:core/Runtime";
 import Iter "mo:core/Iter";
 import Time "mo:core/Time";
+import Migration "migration";
 
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 
-import Migration "migration";
+// Explicit migration function for persistent data evolution.
 (with migration = Migration.run)
 actor {
   // Profile Data Types
@@ -21,6 +22,7 @@ actor {
   public type Profile = {
     username : Text;
     description : Text;
+    owner : ?Principal;
   };
 
   public type UserProfile = {
@@ -71,16 +73,79 @@ actor {
       Runtime.trap("Username and description cannot be empty!");
     };
 
+    // Check if profile already exists
+    switch (profiles.get(username)) {
+      case (?_) {
+        Runtime.trap("Profile with this username already exists!");
+      };
+      case null {};
+    };
+
     let profile : Profile = {
       username;
       description;
+      owner = ?caller;
     };
     profiles.add(username, profile);
   };
 
   public query ({ caller }) func getProfile(username : Text) : async ?Profile {
-    // Public access - anyone can view profiles
+    // Only authenticated users can view profiles
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view profiles");
+    };
     profiles.get(username);
+  };
+
+  public shared ({ caller }) func updateProfile(username : Text, description : Text) : async () {
+    // Only authenticated users can update profiles
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can update profiles");
+    };
+
+    // Validate input
+    if (description == "") {
+      Runtime.trap("Description cannot be empty!");
+    };
+
+    // Verify the profile exists and check ownership
+    switch (profiles.get(username)) {
+      case null {
+        Runtime.trap("Profile does not exist!");
+      };
+      case (?existingProfile) {
+        // Only owner or admin can update
+        if (existingProfile.owner != ?caller and not AccessControl.isAdmin(accessControlState, caller)) {
+          Runtime.trap("Unauthorized: Only the profile owner or admin can update this profile");
+        };
+
+        let updatedProfile : Profile = {
+          username = existingProfile.username;
+          description;
+          owner = existingProfile.owner;
+        };
+        profiles.add(username, updatedProfile);
+      };
+    };
+  };
+
+  public shared ({ caller }) func deleteProfile(username : Text) : async () {
+    // Only admins can delete profiles
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete profiles");
+    };
+
+    // Verify the profile exists
+    switch (profiles.get(username)) {
+      case null {
+        Runtime.trap("Profile does not exist!");
+      };
+      case (?_) {
+        profiles.remove(username);
+        // Also remove associated ratings
+        profileRatings.remove(username);
+      };
+    };
   };
 
   // Profile rating logic
@@ -99,7 +164,12 @@ actor {
       case null {
         Runtime.trap("Profile does not exist!");
       };
-      case (?_) {
+      case (?profile) {
+        // Prevent users from rating their own profiles
+        if (profile.owner == ?caller) {
+          Runtime.trap("Cannot rate your own profile!");
+        };
+
         let profileRating : ProfileRating = {
           rating;
           timestamp = Time.now();
@@ -111,7 +181,10 @@ actor {
   };
 
   public query ({ caller }) func getRating(username : Text) : async ?ProfileRating {
-    // Public access - anyone can view ratings
+    // Only authenticated users can view ratings
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view ratings");
+    };
     profileRatings.get(username);
   };
 
@@ -122,5 +195,28 @@ actor {
     };
     profileRatings.toArray();
   };
-};
 
+  public query ({ caller }) func getAllProfiles() : async [(Text, Profile)] {
+    // Only authenticated users can view all profiles
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view all profiles");
+    };
+    profiles.toArray();
+  };
+
+  public shared ({ caller }) func deleteRating(username : Text) : async () {
+    // Only admins can delete ratings
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete ratings");
+    };
+
+    switch (profileRatings.get(username)) {
+      case null {
+        Runtime.trap("Rating does not exist!");
+      };
+      case (?_) {
+        profileRatings.remove(username);
+      };
+    };
+  };
+};

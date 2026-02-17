@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-improve-the-branch-postmaster-bio-profile-overlay-animation-quality-and-overall-feel-open-close-transitions-overlay-glow-and-typewriter-reveal-to-look-smoother-and-more-premium-without-removing-existing-interactions-tap-close-sounds-click-to-open-backdrop-close",
-      "featureTitle": "Improve the Branch Postmaster bio/profile overlay animation quality and overall feel (open/close transitions, overlay glow, and typewriter reveal) to look smoother and more premium without removing existing interactions (tap/close sounds, click-to-open, backdrop close).",
+      "featureId": "feature-promote-the-current-deployed-draft-including-the-latest-smooth-zoom-profile-image-preview-behavior-to-the-live-production-deployment-so-end-users-see-the-updated-experience",
+      "featureTitle": "Promote the current deployed draft (including the latest smooth-zoom profile image preview behavior) to the live/production deployment so end users see the updated experience.",
       "files": [
-        "frontend/src/components/profile/BpmProfileCard.tsx",
-        "frontend/src/components/profile/TypewriterNeon.tsx",
-        "frontend/src/index.css"
+        "frontend/src/components/profile/ProfileImagePreviewOverlay.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -19,86 +17,6 @@
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-bio-profile-contact-number-shown-inside-the-profile-details-to-use-exactly-7771991108-including-removing-any-masked-placeholder-like-91-xxxx-xxxxxx",
-      "featureTitle": "Update the bio/profile contact number shown inside the profile details to use exactly: 7771991108 (including removing any masked placeholder like '+91-XXXX-XXXXXX').",
-      "files": [
-        "frontend/src/components/profile/BpmProfileCard.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-rewrite-and-expand-the-bio-profile-text-content-to-better-present-the-person-as-an-ippb-expert-and-someone-who-explains-insurance-clearly-with-a-friendly-and-helpful-tone-english-text-this-includes-updating-both-the-typed-biodata-lines-and-the-additional-descriptive-paragraph-in-the-profile-overlay",
-      "featureTitle": "Rewrite and expand the bio/profile text content to better present the person as an IPPB expert and someone who explains insurance clearly, with a friendly and helpful tone (English text). This includes updating both the typed biodata lines and the additional descriptive paragraph in the profile overlay.",
-      "files": [
-        "frontend/src/components/profile/BpmProfileCard.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-replace-all-ui-text-that-is-currently-styled-as-pink-including-pink-gradients-and-pink-highlight-labels-so-it-uses-a-live-animated-color-treatment-based-on-blue-yellow-and-black-no-pink-apply-this-to-existing-pink-text-styles-used-across-the-app-e-g-pink-bolt-result-text-pink-blue-gradient-text-and-ippb-pink-gold-labels-while-keeping-readability-on-the-dark-background",
-      "featureTitle": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink). Apply this to existing pink text styles used across the app (e.g., pink bolt/result text, pink/blue gradient text, and IPPB pink/gold labels) while keeping readability on the dark background.",
-      "files": [
-        "frontend/src/components/calculator/LiveCalculator.tsx",
-        "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-when-the-user-closes-the-bio-profile-overlay-show-a-rating-prompt-e-g-1-5-stars-and-capture-the-rating-so-it-is-visible-to-the-user-afterward-e-g-show-the-submitted-rating-confirmation-and-the-last-submitted-rating-persist-the-submitted-rating-in-the-backend-so-it-can-be-retrieved-later",
-      "featureTitle": "When the user closes the bio/profile overlay, show a rating prompt (e.g., 1–5 stars) and capture the rating so it is visible to the user afterward (e.g., show the submitted rating confirmation and the last submitted rating). Persist the submitted rating in the backend so it can be retrieved later.",
-      "files": [
-        "frontend/src/components/profile/BpmProfileCard.tsx",
-        "frontend/src/components/profile/ProfileRatingDialog.tsx",
-        "frontend/src/hooks/useProfileRating.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
       ],
       "confidence": "high"
     }

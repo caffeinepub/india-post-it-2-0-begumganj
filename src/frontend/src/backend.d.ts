@@ -10,6 +10,7 @@ export type Option<T> = Some<T> | None;
 export type Time = bigint;
 export interface Profile {
     username: string;
+    owner?: Principal;
     description: string;
 }
 export interface UserProfile {
@@ -29,7 +30,10 @@ export enum UserRole {
 export interface backendInterface {
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     createProfile(username: string, description: string): Promise<void>;
+    deleteProfile(username: string): Promise<void>;
+    deleteRating(username: string): Promise<void>;
     getAllProfileRatings(): Promise<Array<[string, ProfileRating]>>;
+    getAllProfiles(): Promise<Array<[string, Profile]>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getProfile(username: string): Promise<Profile | null>;
@@ -38,4 +42,5 @@ export interface backendInterface {
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
     submitRating(username: string, rating: bigint): Promise<void>;
+    updateProfile(username: string, description: string): Promise<void>;
 }

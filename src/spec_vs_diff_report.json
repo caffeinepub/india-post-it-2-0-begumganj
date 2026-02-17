@@ -1,63 +1,39 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-17T10:56:30.262Z",
-  "summary": "Diff implements a post-close profile rating dialog with frontend hook and backend endpoints, updates the profile contact number, and introduces new blue/yellow/black animated text styling in some areas. However, backend persistence is not shown as stable, and pink text appears to remain in at least some UI per the diff summary. Several unrelated features/changes were also introduced (URL param utilities, scheme/testimonial data, etc.), and an immutable hook file was modified.",
+  "generatedAt": "2026-02-17T11:54:02.777Z",
+  "summary": "Diff includes substantial new backend data migration/authorization changes and broad frontend UI/style/content updates. It does include a ProfileImagePreviewOverlay component implementing smooth zoom + fade with backdrop click, Escape key, and close button behavior. However, there is no evidence of any production promotion/deployment configuration change in the provided diff summary, and many changes appear to add or alter UI beyond the stated non-goals.",
   "missing_requirements": [
     {
-      "id": "REQ-4",
-      "requirement": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink) across the app.",
-      "reason": "The diff summary explicitly indicates at least one component still maintains a white/pink theme, and global CSS still defines a pink token for RBP, suggesting pink may remain in the UI.",
+      "id": "REQ-1",
+      "requirement": "Promote the current deployed draft to the live/production deployment so end users see the updated experience (production/live URL matches latest draft).",
+      "reason": "The diff summary shows code changes but no deployment/promotion artifacts (e.g., CI/CD config, environment/hosting config, release tags) indicating that the draft was promoted to production or that the production URL now serves the draft build.",
       "evidence": [
-        "frontend-file-summaries.txt (FrostedHeader: \"maintaining white/pink theme for title and subtitle text.\")",
-        "frontend/src/index.css (defines --rbp-pink)"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "requirement": "Extend the Motoko backend with stable storage and methods to record submitted profile ratings and to fetch the most recent rating and timestamp; persist across upgrades; reject invalid ratings outside 1–5 with a clear error.",
-      "reason": "Backend adds rating types and methods and rejects invalid ratings, but the diff does not show ratings stored in stable state (e.g., stable var / stable structures). A migration file exists but does not demonstrate migrating or preserving rating state.",
-      "evidence": [
-        "backend/main.mo (uses in-memory `let profileRatings = Map.empty<Text, ProfileRating>()` and does not show `stable` storage)",
-        "backend/migration.mo (NewActor is empty; run returns `{}`)"
+        "<file-diff> summary shows only app code changes (backend/*.mo, frontend component) and no deployment-related files/config changes."
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Added URL parameter/sessionStorage utility module (including hash parameter parsing and session persistence) not requested by any REQ.",
-      "reason": "BuildRequest focuses on profile overlay animations/content/colors and rating persistence; URL param management is unrelated.",
-      "evidence": [
-        "frontend/src/utils/urlParams.ts"
-      ]
-    },
-    {
-      "description": "Backend method to fetch all profile ratings (`getAllProfileRatings`) not requested.",
-      "reason": "REQ-6 asks for submit + fetch most recent rating (and timestamp) at minimum; an 'all ratings' endpoint is beyond the request.",
-      "evidence": [
-        "backend/main.mo (public query func getAllProfileRatings)"
-      ]
-    },
-    {
-      "description": "Introduced a migration module even though stable upgrade needs are not demonstrated by the diff.",
-      "reason": "Constraint says add migration.mo only if needed for stable state upgrades; diff does not show stable state or an actual migration need.",
+      "description": "Backend persistent-state migration adding `owner` to Profile and introducing explicit migration hook.",
+      "reason": "Not requested; request is explicitly to promote existing draft to production without adding features.",
       "evidence": [
         "backend/migration.mo",
-        "backend/main.mo (imports Migration and uses `(with migration = Migration.run)`)"
+        "backend/main.mo"
       ]
     },
     {
-      "description": "Modified an immutable hook file (`frontend/src/hooks/useActor.ts`).",
-      "reason": "Constraints explicitly forbid editing `frontend/src/hooks/useActor.ts`; diff shows it was modified.",
+      "description": "New/expanded authorization and access control checks for profile/user profile operations (role/permission gating, admin/owner checks).",
+      "reason": "Not requested and constitutes functional behavior changes beyond promotion.",
       "evidence": [
-        "frontend/src/hooks/useActor.ts"
+        "backend/main.mo (imports MixinAuthorization, AccessControl; permission checks; ownership enforcement)"
       ]
     },
     {
-      "description": "Unrequested broad UI/data changes (schemes normalization, testimonials marquee data, background/header styling changes) beyond the bio/profile + pink removal + rating prompt scope.",
-      "reason": "Not part of REQ-1..REQ-6; these appear to be additional enhancements.",
+      "description": "Multiple frontend UI/theme/content changes across many components (colors, animations, scheme labels, testimonials, background video, header styling, scheme grid/cards/modals/tabs, calculator text styling, WhatsApp button styling, etc.).",
+      "reason": "BuildRequest non-goal says do not add new features or change UI copy; these appear to be new/changed UI behavior and content.",
       "evidence": [
-        "frontend-file-summaries.txt (frontend/src/data/schemes.ts, frontend/src/data/testimonials.ts, frontend/src/components/background/CinematicBackground.tsx, frontend/src/components/header/FrostedHeader.tsx, and other listed component changes)"
+        "frontend-file-summaries.txt (entries for index.css, tailwind.config.js, schemes.ts shortLabel normalization, testimonials.ts, CinematicBackground.tsx, FrostedHeader.tsx, SchemeGrid.tsx, SchemeCard.tsx, SchemeModal.tsx, SchemeTabs.tsx, LiveCalculator.tsx, TestimonialsMarquee.tsx, WhatsAppFloatingButton.tsx, etc.)"
       ]
     }
   ],
@@ -66,15 +42,7 @@
     "backend/main.mo",
     "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/calculator/LiveCalculator.tsx",
-    "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-    "frontend/src/components/profile/BpmProfileCard.tsx",
-    "frontend/src/components/profile/ProfileRatingDialog.tsx",
-    "frontend/src/components/profile/TypewriterNeon.tsx",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useProfileRating.ts",
-    "frontend/src/index.css",
-    "frontend/src/utils/urlParams.ts",
+    "frontend/src/components/profile/ProfileImagePreviewOverlay.tsx",
     "project_state.json"
   ]
 }

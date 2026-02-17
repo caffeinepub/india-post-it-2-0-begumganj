@@ -1,6 +1,6 @@
 {
   "frontend/src/index.css": "Global styles with OKLCH color system, animated-blue-yellow-black-text utility replacing pink text, fixed official-panel class to use direct oklch values instead of Tailwind utilities in @apply, and enhanced profile overlay animations.",
-  "frontend/tailwind.config.js": "Extended Tailwind configuration with new icon-accent-red and icon-accent-blue color tokens, updated ippb-pulse-ring animation to use red/blue gradient instead of metallic-gold.",
+  "frontend/tailwind.config.js": "Extended Tailwind configuration with smooth-zoom-in/out keyframes and 400ms transition duration for gentle profile image preview animations, plus existing icon-accent colors and ippb-pulse-ring animation.",
   "frontend/src/data/schemes.ts": "Centralized data configuration for all six postal schemes with normalized English shortLabel values: \"SB\", \"RD\", \"TD\", \"Sukanya\", \"Monthly Income\", and \"PLI/RPLI\" for consistent UI display.",
   "frontend/src/data/testimonials.ts": "Customer testimonials data array used by the infinite marquee component.",
   "frontend/src/components/background/CinematicBackground.tsx": "Full-screen background video component with autoplay, muted, loop, poster fallback, and strengthened dark gradient overlays plus vignette effect to ensure consistent white/pink text contrast across all viewport sizes.",
@@ -11,7 +11,7 @@
   "frontend/src/components/schemes/SchemeModal.tsx": "Frosted-glass scheme modal dialog with continuous icon-live animation on scheme icon and close button, red details-text-red styling for description, and red/blue border accents.",
   "frontend/src/components/schemes/SchemeTabs.tsx": "Four-tab navigation with red text styling for inactive tabs, RBP animated gradient headings, and red details-text-red styling applied to all tab body content text.",
   "frontend/src/components/calculator/LiveCalculator.tsx": "Interactive calculator with animated blue/yellow/black text for non-RBP scheme results, replacing previous pink styling.",
-  "frontend/src/components/profile/BpmProfileCard.tsx": "BPM profile card with premium open/close animations, enhanced overlay transitions, updated contact number (7771991108), expanded IPPB expertise description, and rating prompt trigger on close.",
+  "frontend/src/components/profile/BpmProfileCard.tsx": "BPM profile card with premium open/close animations, enhanced overlay transitions, rating prompt on close, and click-to-enlarge profile image feature with live animation that opens a full-screen preview overlay.",
   "frontend/src/components/profile/TypewriterNeon.tsx": "Typewriter text animation component with blue/yellow/black animated text styling, stable layout containers, and continuous blinking cursor.",
   "frontend/src/components/motto/RightEdgeMotto.tsx": "Fixed right-edge vertical motto text with official government styling featuring more restrained letter spacing and formal typography while maintaining the same English text content.",
   "frontend/src/components/testimonials/TestimonialsMarquee.tsx": "Infinite scrolling marquee of customer testimonials with continuous horizontal animation via testimonials-marquee class, official styling with red text for all testimonial content, and fixed 5-star rating display for all testimonials.",
@@ -37,5 +37,6 @@
   "frontend/src/components/notice/CloneWorkBlockedNotice.tsx": "Clear UI placeholder component with Lock icon and animated pink/blue heading, stating that exact-clone work requires source URL, assets, and permission confirmation before proceeding.",
   "frontend/src/components/warning/CopyrightInfoDialog.tsx": "Copyright warning modal component with blue text message and animated red pulsing border, displaying the exact copyright warning text with continuous icon animation and accessible close button.",
   "frontend/src/hooks/useProfileRating.ts": "React Query hook for profile rating operations, fetches last rating and submits new ratings (1-5) with error handling.",
-  "frontend/src/components/profile/ProfileRatingDialog.tsx": "Rating prompt dialog with 1-5 star selection, submission feedback, and display of last submitted rating using shadcn Dialog component."
+  "frontend/src/components/profile/ProfileRatingDialog.tsx": "Rating prompt dialog with 1-5 star selection, submission feedback, and display of last submitted rating using shadcn Dialog component.",
+  "frontend/src/components/profile/ProfileImagePreviewOverlay.tsx": "Full-screen animated image-preview overlay component for profile images with smooth ease-in-out zoom and fade transitions, production-hardened with stopPropagation on close button to prevent double-close issues, and delayed unmount for exit animation."
 }

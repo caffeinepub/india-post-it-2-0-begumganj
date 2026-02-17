@@ -1,14 +1,37 @@
-import Set "mo:core/Set";
-import Text "mo:core/Text";
+import Map "mo:core/Map";
+import Principal "mo:core/Principal";
 
 module {
-  type OldActor = {
-    mySet : Set.Set<Text>;
+  // Old Profile type (without owner field)
+  type OldProfile = {
+    username : Text;
+    description : Text;
   };
 
-  type NewActor = {};
+  // Old Actor state
+  type OldActor = {
+    profiles : Map.Map<Text, OldProfile>;
+  };
 
+  // New Profile type (with owner field)
+  type NewProfile = {
+    username : Text;
+    description : Text;
+    owner : ?Principal;
+  };
+
+  // New Actor state
+  type NewActor = {
+    profiles : Map.Map<Text, NewProfile>;
+  };
+
+  // Migration function
   public func run(old : OldActor) : NewActor {
-    {};
+    let newProfiles = old.profiles.map<Text, OldProfile, NewProfile>(
+      func(_username, oldProfile) {
+        { oldProfile with owner = null };
+      }
+    );
+    { profiles = newProfiles };
   };
 };
