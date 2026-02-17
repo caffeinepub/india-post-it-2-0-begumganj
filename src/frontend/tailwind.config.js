@@ -61,10 +61,11 @@ export default {
             },
             boxShadow: {
                 xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
-                'glow-red': '0 0 15px oklch(var(--neon-red) / 0.4), 0 0 30px oklch(var(--neon-red) / 0.2)',
-                'glow-gold': '0 0 15px oklch(var(--metallic-gold) / 0.4), 0 0 30px oklch(var(--metallic-gold) / 0.2)',
-                'glow-red-strong': '0 0 25px oklch(var(--neon-red) / 0.6), 0 0 50px oklch(var(--neon-red) / 0.4)',
-                'official': '0 2px 8px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1)'
+                'glow-red': '0 0 8px oklch(var(--neon-red) / 0.3), 0 0 16px oklch(var(--neon-red) / 0.15)',
+                'glow-gold': '0 0 8px oklch(var(--metallic-gold) / 0.3), 0 0 16px oklch(var(--metallic-gold) / 0.15)',
+                'glow-red-strong': '0 0 12px oklch(var(--neon-red) / 0.4), 0 0 24px oklch(var(--neon-red) / 0.2)',
+                'official': '0 2px 8px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1)',
+                'official-sm': '0 1px 4px rgba(0, 0, 0, 0.12)'
             },
             keyframes: {
                 'accordion-down': {
@@ -74,11 +75,26 @@ export default {
                 'accordion-up': {
                     from: { height: 'var(--radix-accordion-content-height)' },
                     to: { height: '0' }
+                },
+                'ippb-pulse-ring': {
+                    '0%': {
+                        boxShadow: '0 0 0 0 oklch(var(--metallic-gold) / 0.4)',
+                        opacity: '1'
+                    },
+                    '50%': {
+                        boxShadow: '0 0 0 12px oklch(var(--metallic-gold) / 0.1)',
+                        opacity: '0.8'
+                    },
+                    '100%': {
+                        boxShadow: '0 0 0 20px oklch(var(--metallic-gold) / 0)',
+                        opacity: '0'
+                    }
                 }
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
-                'accordion-up': 'accordion-up 0.2s ease-out'
+                'accordion-up': 'accordion-up 0.2s ease-out',
+                'ippb-pulse-ring': 'ippb-pulse-ring 1s ease-out infinite'
             },
             letterSpacing: {
                 'official': '-0.01em'

@@ -2,10 +2,20 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-the-footer-attribution-text-link-that-reads-built-with-using-caffeine-ai-including-the-heart-icon-and-the-external-link-to-caffeine-ai-so-it-is-no-longer-displayed-anywhere-in-the-ui",
-      "featureTitle": "Remove the footer attribution text/link that reads “Built with … using caffeine.ai” (including the heart icon and the external link to caffeine.ai) so it is no longer displayed anywhere in the UI.",
+      "featureId": "feature-remove-the-recently-introduced-live-blink-icon-animation-across-the-site-by-eliminating-usage-of-the-icon-live-blink-2s-class-and-removing-or-disabling-the-corresponding-css-animation-so-icons-no-longer-blink",
+      "featureTitle": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
       "files": [
-        "frontend/src/components/footer/Footer.tsx"
+        "frontend/src/components/gallery/GalleryCard.tsx",
+        "frontend/src/components/gallery/GalleryLightbox.tsx",
+        "frontend/src/components/gallery/GalleryModal.tsx",
+        "frontend/src/components/header/FrostedHeader.tsx",
+        "frontend/src/components/ippb/IppbGridCard.tsx",
+        "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+        "frontend/src/components/prompt/PromptCopySection.tsx",
+        "frontend/src/components/schemes/SchemeCard.tsx",
+        "frontend/src/components/support/CallFloatingButton.tsx",
+        "frontend/src/components/support/WhatsAppFloatingButton.tsx",
+        "frontend/src/index.css"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,7 +25,72 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-21"
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-restore-headings-to-their-previous-styling-by-removing-the-heading-primary-live-class-wherever-applied-and-removing-or-disabling-its-css-so-headings-are-no-longer-forced-to-dark-red-and-do-not-blink",
+      "featureTitle": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
+      "files": [
+        "frontend/src/components/gallery/GalleryModal.tsx",
+        "frontend/src/components/header/It20Modal.tsx",
+        "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+        "frontend/src/components/prompt/PromptCopySection.tsx",
+        "frontend/src/components/schemes/SchemeModal.tsx",
+        "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-restore-modal-overlay-close-x-buttons-to-their-previous-appearance-by-removing-the-close-x-live-blink-3s-class-from-all-close-icons-and-removing-or-disabling-its-css-so-close-icons-are-not-forced-red-and-do-not-blink",
+      "featureTitle": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
+      "files": [
+        "frontend/src/components/gallery/GalleryLightbox.tsx",
+        "frontend/src/components/gallery/GalleryModal.tsx",
+        "frontend/src/components/header/It20Modal.tsx",
+        "frontend/src/components/profile/BpmProfileCard.tsx",
+        "frontend/src/components/schemes/SchemeModal.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-audit-and-revert-any-other-visual-changes-introduced-specifically-to-support-the-new-blinking-color-update-set-including-any-helper-classes-added-only-for-that-update-so-the-site-matches-the-look-and-behavior-of-the-pre-change-version",
+      "featureTitle": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
+      "files": [
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }

@@ -1,190 +1,44 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 15,
-  "summary": "Design and build an official-style, 4K responsive web UI/UX for 'India Post IT 2.0 (Begumganj)' with a Dark Luxury aesthetic, interactive dashboard modals for postal schemes, integrated calculators, and an animated BPM profile section.",
+  "projectStateVersion": 3,
+  "summary": "New project",
   "architectural_notes": [
-    "UI/UX target: official-style website with 4K responsive layout and GPU-accelerated transitions.",
-    "Design system: Dark Luxury palette (#0D0D0D base, #FF3131 neon red, #D4AF37 metallic gold) and frosted-glass surfaces.",
-    "Interaction pattern: click-to-open frosted-glass modal (25px blur) with consistent 4-tab information architecture across schemes.",
-    "Dashboard uses 3D floating glossy icons; scheme content includes 2026 rates/benefits and document checklists.",
-    "Embedded calculators require real-time updates from slider and manual input.",
-    "Profile card should use a real profile image asset (not just a placeholder); support swapping the image via a static file reference in the frontend.",
-    "Ensure high-contrast typography on Dark Luxury theme (no black text on dark backgrounds); standardize to white/near-white text and adjust styling for a more official/government-site feel.",
-    "SSA scheme iconography requirement updated: use a small girl visual instead of piggy bank for Sukanya Samriddhi Yojana card/icon.",
-    "Live calculator deposit amount input: when input background is white/light, ensure high-contrast text (requested: red) for readability.",
-    "Add a dedicated Call action (tel:7771991108) as a bottom-positioned icon/button with a subtle live/animated indicator; separate from WhatsApp CTA."
+    "Consider adding a deployment/version rollback mechanism to revert to a known good site state."
   ],
   "known_issues": [
-    "Some text appears black on dark background causing low contrast/readability; needs switching to white/near-white and overall styling refinement for official look.",
-    "Live calculator deposit amount input currently shows white text on a white background, making the entered value unreadable."
+    "User reports the site no longer matches the previous version and requests reverting recent changes (possible regression)."
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-create-a-4k-optimized-fully-responsive-landing-dashboard-page-for-india-post-it-2-0-with-an-official-style-dark-luxury-ui-matte-black-0d0d0d-base-neon-red-ff3131-and-metallic-gold-d4af37-accents-frosted-glass-surfaces-and-gpu-accelerated-transitions",
-      "title": "Create a 4K-optimized, fully responsive landing/dashboard page for “India Post IT 2.0” with an official-style “Dark Luxury” UI: Matte Black (#0D0D0D) base, Neon Red (#FF3131) and Metallic Gold (#D4AF37) accents, frosted-glass surfaces, and GPU-accelerated transitions.",
+      "id": "feature-remove-the-recently-introduced-live-blink-icon-animation-across-the-site-by-eliminating-usage-of-the-icon-live-blink-2s-class-and-removing-or-disabling-the-corresponding-css-animation-so-icons-no-longer-blink",
+      "title": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-cinematic-full-screen-background-layer-that-plays-a-looping-video-autoplay-muted-inline-behind-the-ui-with-graceful-fallback-poster-image-dark-gradient-when-video-cannot-play-the-background-should-visually-suggest-a-3d-vintage-brass-india-post-seal-on-red-wax-morphing-into-a-glowing-biometric-fingerprint-scan-settling-into-a-dark-ambient-tech-loop",
-      "title": "Add a cinematic full-screen background layer that plays a looping video (autoplay, muted, inline) behind the UI, with graceful fallback (poster image + dark gradient) when video cannot play. The background should visually suggest: a 3D vintage brass India Post seal on red wax morphing into a glowing biometric fingerprint scan, settling into a dark ambient tech loop.",
+      "id": "feature-restore-headings-to-their-previous-styling-by-removing-the-heading-primary-live-class-wherever-applied-and-removing-or-disabling-its-css-so-headings-are-no-longer-forced-to-dark-red-and-do-not-blink",
+      "title": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-header-as-a-frosted-glass-bar-containing-1-title-text-india-post-it-2-0-and-2-a-location-pill-with-exact-text-b-o-mundla-chawal-s-o-begumganj",
-      "title": "Implement the header as a frosted-glass bar containing: (1) title text “India Post IT 2.0”, and (2) a location pill with exact text “B.O: Mundla Chawal | S.O: Begumganj”.",
+      "id": "feature-restore-modal-overlay-close-x-buttons-to-their-previous-appearance-by-removing-the-close-x-live-blink-3s-class-from-all-close-icons-and-removing-or-disabling-its-css-so-close-icons-are-not-forced-red-and-do-not-blink",
+      "title": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-build-the-scheme-dashboard-with-six-high-gloss-floating-3d-styled-interactive-icons-cards-for-sb-ssa-rd-mis-td-and-pli-rpli-map-each-scheme-to-the-specified-visual-metaphor-sb-3d-digital-hourglass-ssa-golden-3d-piggy-bank-with-sparkling-crown-rd-3d-spiral-staircase-of-coins-mis-3d-wall-clock-emitting-gold-coins-td-3d-golden-vault-safe-pli-rpli-pulsing-3d-metallic-shield",
-      "title": "Build the scheme dashboard with six high-gloss, floating, 3D-styled interactive icons/cards for: SB, SSA, RD, MIS, TD, and PLI/RPLI. Map each scheme to the specified visual metaphor: SB = 3D Digital Hourglass; SSA = Golden 3D Piggy Bank with sparkling crown; RD = 3D Spiral Staircase of coins; MIS = 3D Wall Clock emitting gold coins; TD = 3D Golden Vault/Safe; PLI/RPLI = Pulsing 3D Metallic Shield.",
+      "id": "feature-audit-and-revert-any-other-visual-changes-introduced-specifically-to-support-the-new-blinking-color-update-set-including-any-helper-classes-added-only-for-that-update-so-the-site-matches-the-look-and-behavior-of-the-pre-change-version",
+      "title": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
       "reqIds": [
         "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-the-universal-click-system-clicking-any-scheme-icon-opens-a-transparent-frosted-glass-modal-dialog-with-blur-set-to-25px-or-the-closest-equivalent-across-browsers-including-proper-focus-trapping-esc-to-close-and-click-outside-to-close-behavior",
-      "title": "Implement the universal “Click system”: clicking any scheme icon opens a transparent frosted-glass modal dialog with blur set to 25px (or the closest equivalent across browsers), including proper focus trapping, ESC-to-close, and click-outside-to-close behavior.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-inside-each-scheme-modal-add-a-crisp-white-4-tab-navigation-with-the-following-tabs-and-content-structure-tab-1-history-evolution-and-purpose-tab-2-eligibility-age-residency-limits-tab-3-benefits-interest-rates-2026-tax-rebates-80c-maturity-perks-tab-4-documents-kyc-and-specific-forms-checklist-provide-content-as-editable-data-driven-copy-per-scheme-e-g-a-single-typescript-config-file-so-it-can-be-updated-without-changing-components",
-      "title": "Inside each scheme modal, add a crisp white 4-tab navigation with the following tabs and content structure: Tab 1 “History” (evolution and purpose), Tab 2 “Eligibility” (age/residency/limits), Tab 3 “Benefits” (interest rates (2026), tax rebates (80C), maturity perks), Tab 4 “Documents” (KYC and specific forms checklist). Provide content as editable, data-driven copy per scheme (e.g., a single TypeScript config file) so it can be updated without changing components.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-an-embedded-live-2026-calculator-section-within-every-scheme-modal-that-includes-1-an-interactive-slider-and-2-a-manual-input-box-the-calculator-must-update-results-instantly-as-inputs-change-if-exact-scheme-formulas-interest-tables-are-not-provided-implement-a-clearly-labeled-generic-calculator-model-per-scheme-with-configurable-rate-tenure-fields-stored-in-the-same-scheme-data-config",
-      "title": "Add an embedded “Live 2026 Calculator” section within every scheme modal that includes (1) an interactive slider and (2) a manual input box. The calculator must update results instantly as inputs change. If exact scheme formulas/interest tables are not provided, implement a clearly labeled generic calculator model per scheme with configurable rate/tenure fields stored in the same scheme data config.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-the-bpm-prabal-pratap-profile-card-with-the-specified-unique-animation-a-minimalist-profile-card-with-circular-photo-and-subtle-glow-on-click-the-card-expands-and-dissolves-into-a-frosted-glass-overlay-the-photo-slides-up-from-the-bottom-left-the-bio-data-and-designation-type-out-with-a-neon-red-cursor-effect-the-background-behind-the-bio-fades-slightly-to-focus-attention",
-      "title": "Create the “BPM Prabal Pratap” profile card with the specified unique animation: a minimalist profile card with circular photo and subtle glow; on click, the card expands and dissolves into a frosted-glass overlay; the photo slides up from the bottom-left; the bio-data and designation type out with a neon-red cursor effect; the background behind the bio fades slightly to focus attention.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-vertical-right-edge-motto-text-as-a-glowing-neon-element-with-exact-content-dedicated-to-the-service-of-the-nation-it-must-remain-visible-without-overlapping-core-content-and-adapt-for-mobile-e-g-collapse-to-a-smaller-pinned-element-if-needed",
-      "title": "Add the vertical right-edge motto text as a glowing neon element with exact content: “DEDICATED TO THE SERVICE OF THE NATION 🇮🇳”. It must remain visible without overlapping core content and adapt for mobile (e.g., collapse to a smaller pinned element if needed).",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-ux-support-elements-1-an-infinite-horizontal-marquee-of-testimonials-and-2-a-floating-3d-styled-glowing-red-whatsapp-button-fixed-to-bottom-right-that-uses-the-number-7771991108-e-g-wa-me-link-and-remains-above-other-ui-while-not-blocking-modal-close-controls",
-      "title": "Implement UX & support elements: (1) an infinite horizontal marquee of testimonials, and (2) a floating, 3D-styled, glowing red WhatsApp button fixed to bottom-right that uses the number 7771991108 (e.g., wa.me link) and remains above other UI while not blocking modal close controls.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-required-static-assets-generated-images-video-to-the-frontend-as-static-files-and-reference-them-directly-from-the-ui-do-not-route-images-video-through-the-backend",
-      "title": "Add required static assets (generated images + video) to the frontend as static files and reference them directly from the UI (do not route images/video through the backend).",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-use-the-uploaded-image-file-prabalpratapimageimg-20260212-140728-png-as-the-profile-picture-for-the-bpm-prabal-pratap-profile-card-by-converting-it-into-the-static-asset-expected-by-the-ui-assets-generated-profile-prabal-pratap-dim-1024x1024-png-and-ensuring-it-displays-correctly-in-both-the-compact-card-and-the-expanded-overlay",
-      "title": "Use the uploaded image file \"prabalpratapimageIMG_20260212_140728.png\" as the profile picture for the \"BPM Prabal Pratap\" profile card by converting it into the static asset expected by the UI (\"/assets/generated/profile-prabal-pratap.dim_1024x1024.png\") and ensuring it displays correctly in both the compact card and the expanded overlay.",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-audit-the-entire-frontend-ui-and-replace-any-low-contrast-dark-black-text-that-appears-on-dark-backgrounds-with-high-contrast-white-near-white-text-or-appropriate-theme-tokens-ensuring-all-content-is-clearly-readable-across-the-landing-page-scheme-cards-modals-calculator-profile-card-testimonials-motto-and-footer",
-      "title": "Audit the entire frontend UI and replace any low-contrast dark/black text that appears on dark backgrounds with high-contrast white/near-white text (or appropriate theme tokens), ensuring all content is clearly readable across the landing page, scheme cards, modals, calculator, profile card, testimonials, motto, and footer.",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-refine-the-visual-styling-to-feel-more-like-an-official-government-site-while-keeping-the-existing-dark-luxury-theme-standardize-typography-hierarchy-reduce-excessive-glow-intensity-where-it-harms-legibility-and-adjust-spacing-borders-to-look-cleaner-and-more-formal",
-      "title": "Refine the visual styling to feel more like an official government site while keeping the existing Dark Luxury theme: standardize typography hierarchy, reduce excessive glow intensity where it harms legibility, and adjust spacing/borders to look cleaner and more formal.",
-      "reqIds": [
-        "REQ-14"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-sukanya-samriddhi-account-ssa-scheme-icon-from-the-piggy-bank-image-to-a-small-girl-image-across-the-dashboard-card-and-anywhere-else-the-scheme-icon-is-shown-by-updating-the-ssa-iconpath-in-frontend-src-data-schemes-ts-to-point-to-the-new-static-asset",
-      "title": "Replace the Sukanya Samriddhi Account (SSA) scheme icon from the piggy bank image to a small girl image across the dashboard card and anywhere else the scheme icon is shown by updating the SSA `iconPath` in `frontend/src/data/schemes.ts` to point to the new static asset.",
-      "reqIds": [
-        "REQ-15"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-adjust-the-live-2026-calculator-styling-so-that-any-text-rendered-on-light-white-background-areas-uses-black-or-near-black-text-for-readability-and-add-a-subtle-live-animation-to-the-changing-result-value-so-users-can-see-it-updating-when-inputs-change",
-      "title": "Adjust the Live 2026 Calculator styling so that any text rendered on light/white background areas uses black (or near-black) text for readability, and add a subtle “live” animation to the changing result value so users can see it updating when inputs change.",
-      "reqIds": [
-        "REQ-16"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-new-clickable-it-2-0-icon-in-the-header-when-clicked-open-a-dedicated-modal-panel-containing-it-2-0-information-the-modal-must-be-dismissible-close-button-esc-click-outside-and-must-use-english-text",
-      "title": "Add a new clickable “IT 2.0” icon in the header; when clicked, open a dedicated modal/panel containing IT 2.0 information. The modal must be dismissible (close button + ESC + click outside) and must use English text.",
-      "reqIds": [
-        "REQ-17"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-live-2026-calculator-deposit-amount-manual-input-so-the-entered-value-is-always-readable-change-the-input-text-color-to-neon-red-ff3131-and-ensure-caret-placeholder-are-also-readable-even-when-the-input-background-appears-light-white",
-      "title": "Update the Live 2026 Calculator deposit amount manual input so the entered value is always readable: change the input text color to Neon Red (#FF3131) (and ensure caret/placeholder are also readable) even when the input background appears light/white.",
-      "reqIds": [
-        "REQ-18"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-a-bottom-positioned-call-action-ui-call-icon-with-a-subtle-live-pulsing-animation-that-displays-the-phone-number-7771991108-and-initiates-a-phone-call-on-click-using-a-tel-link-tel-7771991108",
-      "title": "Add a bottom-positioned Call action UI (call icon with a subtle live/pulsing animation) that displays the phone number 7771991108 and initiates a phone call on click using a tel: link (tel:7771991108).",
-      "reqIds": [
-        "REQ-19"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-header-it-2-0-pill-button-the-clickable-it-2-0-box-in-the-top-header-that-opens-the-it-2-0-modal-to-use-a-dark-red-background-treatment-so-it-visually-reads-as-a-more-official-government-style-element-while-preserving-existing-layout-click-behavior-and-accessibility",
-      "title": "Update the header \"IT 2.0\" pill/button (the clickable IT 2.0 box in the top header that opens the IT 2.0 modal) to use a dark red background treatment so it visually reads as a more official/government-style element while preserving existing layout, click behavior, and accessibility.",
-      "reqIds": [
-        "REQ-20"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-remove-the-footer-attribution-text-link-that-reads-built-with-using-caffeine-ai-including-the-heart-icon-and-the-external-link-to-caffeine-ai-so-it-is-no-longer-displayed-anywhere-in-the-ui",
-      "title": "Remove the footer attribution text/link that reads “Built with … using caffeine.ai” (including the heart icon and the external link to caffeine.ai) so it is no longer displayed anywhere in the UI.",
-      "reqIds": [
-        "REQ-21"
       ],
       "version": 1
     }
@@ -192,115 +46,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Cinematic full-screen background video (seal-to-fingerprint morph) with dark ambient tech loop",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Dark Luxury theme styling (Matte Black base, Neon Red + Metallic Gold accents) with frosted-glass UI components",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Header with frosted-glass bar, app title, and location pill (B.O: Mundla Chawal | S.O: Begumganj)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Interactive dashboard with high-gloss 3D floating icons for schemes (SB, SSA, RD, MIS, TD, PLI/RPLI) and specified icon metaphors",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Universal click system: frosted-glass modal (blur 25px) with 4-tab navigation (History/Eligibility/Benefits/Documents) per scheme",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Live 2026 calculator inside each scheme modal (slider + manual input) for instant maturity calculation",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "BPM Prabal Pratap profile card with unique expand/dissolve overlay animation and typed bio with neon cursor effect",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Vertical glowing motto text on right edge: 'DEDICATED TO THE SERVICE OF THE NATION'",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "UX support elements: infinite horizontal testimonials marquee and floating 3D glowing red WhatsApp button (7771991108) bottom-right",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Performance and responsiveness targets: 4K optimized, GPU-accelerated smooth transitions, fully desktop/mobile responsive",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Add/set the actual profile picture in the BPM Prabal Pratap profile card (replace placeholder with provided photo asset)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-12",
-      "summary": "Adjust typography/colors for readability: convert any black text to white on dark background and refine styling to feel more like an official government site",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-13",
-      "summary": "Update Sukanya Samriddhi (SSA) dashboard icon: replace piggy bank metaphor with a small girl image/icon",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-14",
-      "summary": "Live 2026 calculator styling: in white-background areas, change text to black and add a subtle live/typing animation effect",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-15",
-      "summary": "Add a clickable \"IT 2.0\" icon (in addition to the title) that opens a dedicated panel/modal with IT 2.0 information/quick actions",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-16",
-      "summary": "Add a bottom-positioned animated Call icon; clicking triggers a phone call to 7771991108 (tel:)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-17",
-      "summary": "Change the top header/title area box (where “IT 2.0” is written) to a dark red style to look more like an original official website",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-18",
-      "summary": "Remove the 'Built with using caffeine.ai' branding text from the UI (e.g., footer/credits area)",
+      "summary": "Restore/rollback the site to the previous version (as it was before the recent changes)",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "India Post IT 2.0 (Begumganj)",
+  "projectName": "IPPB Interactive Portal",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

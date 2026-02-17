@@ -1,29 +1,111 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T11:43:13.676Z",
-  "summary": "REQ-21 appears implemented by removing the footer attribution block; Footer.tsx now renders only the copyright and disclaimer. No other requested changes are evident. Two ancillary metadata/state files were modified without being requested in the BuildRequest.",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-17T04:09:47.938Z",
+  "summary": "The diff does not demonstrate a rollback of the recent blink/color changes. Instead, it introduces/retains multiple animations and styling changes (e.g., gallery glow, floating button ping/pulse, Tailwind animation tokens, and a noted live-blink heading in SchemeGrid per the file summary). There is no clear evidence that the specified blink-related utility classes (`icon-live-blink-2s`, `heading-primary-live`, `close-x-live-blink-3s`) were removed from all React components or that their corresponding CSS/animation definitions were disabled/removed.",
+  "missing_requirements": [
     {
-      "description": "Modified project metadata/state (project_state.json) including projectStateVersion and summary, which was not requested and is outside the scope of removing footer attribution.",
-      "reason": "BuildRequest only asked to remove the “Built with … using caffeine.ai” attribution from the footer UI and explicitly listed no other goals; updating project state/summary is not part of REQ-21.",
+      "id": "REQ-1",
+      "requirement": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
+      "reason": "The diff summary does not show removal of `icon-live-blink-2s` usages or removal/disablement of its CSS/keyframes. Additionally, other icon-related animations remain (e.g., ping/pulse/glow effects), which conflicts with the acceptance criterion that no icons blink anywhere.",
       "evidence": [
-        "project_state.json"
+        "frontend/src/components/support/CallFloatingButton.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js",
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "Updated frontend file summary metadata (frontend-file-summaries.txt), which was not requested as part of removing the footer attribution.",
-      "reason": "BuildRequest focuses solely on UI removal of caffeine.ai attribution; updating a documentation/summary file is not requested.",
+      "id": "REQ-2",
+      "requirement": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
+      "reason": "No evidence is shown that `heading-primary-live` was removed from components or that its CSS was removed/disabled. The file summary explicitly mentions a 'dark red section heading with 2-second live blink animation' in SchemeGrid, which suggests heading blink behavior still exists somewhere.",
       "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
+      "reason": "The diff shows X icons styled as `text-official-primary`, but does not provide evidence that `close-x-live-blink-3s` was removed everywhere or that its CSS was removed/disabled. Without explicit removal evidence, the requirement is not verifiably implemented.",
+      "evidence": [
+        "frontend/src/components/gallery/GalleryLightbox.tsx",
+        "frontend/src/components/header/It20Modal.tsx",
+        "frontend/src/components/profile/BpmProfileCard.tsx",
+        "frontend/src/components/schemes/SchemeModal.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
+      "reason": "The diff includes/retains various new or non-rollback animations/utilities (gallery glow animation, modal enter animations, ping effects, Tailwind pulse ring animation token per summary) rather than demonstrating removal of blink/color utilities. The summary also indicates ongoing animation support rather than a cleanup of blink-related utilities.",
+      "evidence": [
+        "frontend/src/index.css",
+        "frontend/src/components/support/CallFloatingButton.tsx",
+        "frontend-file-summaries.txt",
+        "frontend/tailwind.config.js"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added/retained new visual animations and effects unrelated to the rollback request (e.g., gallery glow animation, modal enter animations).",
+      "reason": "The BuildRequest explicitly says to rollback blinking/color changes and lists non-goals including adding new animations or additional visual effects. The diff introduces/keeps multiple animations.",
+      "evidence": [
+        "frontend/src/index.css",
+        "frontend/src/components/gallery/GalleryCard.tsx",
+        "frontend/src/components/gallery/GalleryModal.tsx"
+      ]
+    },
+    {
+      "description": "Floating call button includes an `animate-ping` effect behind the phone icon (a blinking/pulsing effect).",
+      "reason": "The request is to remove blink animations across the site and avoid new animations. `animate-ping` is an attention-drawing pulse effect on an icon area.",
+      "evidence": [
+        "frontend/src/components/support/CallFloatingButton.tsx"
+      ]
+    },
+    {
+      "description": "Tailwind configuration extended with a looping 'soft glowing ring blink effect on the floating action button' (per summary).",
+      "reason": "Not requested; conflicts with rollback and non-goal of adding animations/effects.",
+      "evidence": [
+        "frontend/tailwind.config.js",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "description": "SchemeGrid described as having a 'dark red section heading with 2-second live blink animation' (per summary).",
+      "reason": "This is the opposite of the rollback requirements (headings should not blink; remove live/blink utilities).",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "description": "Non-rollback content/feature additions in UI components (e.g., IPPB overlay dialog described as 'premium animations' and a prompt-copy section).",
+      "reason": "The BuildRequest's non-goals include not introducing new features or changing site content/structure beyond rollback of blinking/color changes. These appear to be new/expanded features/content not tied to removing blink utilities.",
+      "evidence": [
+        "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+        "frontend/src/components/prompt/PromptCopySection.tsx",
         "frontend-file-summaries.txt"
       ]
     }
   ],
-  "confidence": 0.74,
+  "confidence": 0.78,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/footer/Footer.tsx",
+    "frontend/src/components/gallery/GalleryCard.tsx",
+    "frontend/src/components/gallery/GalleryLightbox.tsx",
+    "frontend/src/components/gallery/GalleryModal.tsx",
+    "frontend/src/components/header/FrostedHeader.tsx",
+    "frontend/src/components/header/It20Modal.tsx",
+    "frontend/src/components/ippb/IppbGridCard.tsx",
+    "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+    "frontend/src/components/profile/BpmProfileCard.tsx",
+    "frontend/src/components/prompt/PromptCopySection.tsx",
+    "frontend/src/components/schemes/SchemeCard.tsx",
+    "frontend/src/components/schemes/SchemeModal.tsx",
+    "frontend/src/components/support/CallFloatingButton.tsx",
+    "frontend/src/components/support/WhatsAppFloatingButton.tsx",
+    "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
+    "frontend/src/index.css",
     "project_state.json"
   ]
 }

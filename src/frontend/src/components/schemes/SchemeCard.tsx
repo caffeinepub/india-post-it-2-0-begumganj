@@ -1,4 +1,5 @@
 import type { SchemeData } from '@/data/schemes';
+import { useClickSound } from '@/hooks/useClickSound';
 
 interface SchemeCardProps {
   scheme: SchemeData;
@@ -6,42 +7,49 @@ interface SchemeCardProps {
 }
 
 export function SchemeCard({ scheme, onClick }: SchemeCardProps) {
+  const { playTap } = useClickSound();
+
+  const handleActivation = () => {
+    playTap();
+    onClick();
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={handleActivation}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          onClick();
+          handleActivation();
         }
       }}
-      className="group relative frosted-glass-light rounded-xl p-6 border-2 border-metallic-gold/30 hover:border-metallic-gold/60 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-glow-gold float-animation focus:outline-none focus:ring-2 focus:ring-metallic-gold focus:ring-offset-2 focus:ring-offset-matte-black"
+      className="group relative frosted-glass-light rounded-lg p-6 border border-metallic-gold/25 hover:border-metallic-gold/50 transition-all duration-200 hover:shadow-official focus:outline-none focus:ring-2 focus:ring-metallic-gold focus:ring-offset-2 focus:ring-offset-matte-black"
       aria-label={`Open ${scheme.label} details`}
     >
-      {/* Icon Container with Refined Effect */}
-      <div className="relative mb-6 aspect-square w-full max-w-[180px] mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-br from-metallic-gold/15 to-neon-red/15 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300" />
+      {/* Icon Container */}
+      <div className="relative mb-5 aspect-square w-full max-w-[160px] mx-auto">
+        <div className="absolute inset-0 bg-gradient-to-br from-metallic-gold/10 to-neon-red/10 rounded-lg blur-md group-hover:blur-lg transition-all duration-200" />
         <img
           src={scheme.iconPath}
           alt={scheme.label}
-          className="relative w-full h-full object-contain drop-shadow-2xl group-hover:drop-shadow-[0_0_25px_rgba(212,175,55,0.5)] transition-all duration-300"
+          className="relative w-full h-full object-contain drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-200"
         />
       </div>
 
       {/* Label */}
-      <h3 className="heading-md text-metallic-gold group-hover:text-neon-red transition-colors duration-300 mb-3">
+      <h3 className="heading-md text-metallic-gold group-hover:text-neon-red transition-colors duration-200 mb-2">
         {scheme.shortLabel}
       </h3>
       
       {/* Description */}
-      <p className="body-sm text-official-secondary group-hover:text-official-primary transition-colors duration-300">
+      <p className="body-sm text-official-secondary group-hover:text-official-primary transition-colors duration-200">
         {scheme.description}
       </p>
 
       {/* Hover Indicator */}
-      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="w-8 h-8 rounded-full bg-metallic-gold/20 flex items-center justify-center border border-metallic-gold/40">
-          <svg className="w-4 h-4 text-metallic-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <div className="w-7 h-7 rounded-full bg-metallic-gold/15 flex items-center justify-center border border-metallic-gold/30">
+          <svg className="w-3.5 h-3.5 text-metallic-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </div>

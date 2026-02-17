@@ -1,45 +1,63 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { getScheme, type SchemeId } from '@/data/schemes';
-import { SchemeTabs } from './SchemeTabs';
 import { X } from 'lucide-react';
+import { SchemeTabs } from './SchemeTabs';
+import type { SchemeData } from '@/data/schemes';
+import { useClickSound } from '@/hooks/useClickSound';
 
 interface SchemeModalProps {
-  schemeId: SchemeId | null;
+  scheme: SchemeData | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function SchemeModal({ schemeId, isOpen, onClose }: SchemeModalProps) {
-  if (!schemeId) return null;
+export function SchemeModal({ scheme, isOpen, onClose }: SchemeModalProps) {
+  const { playClose } = useClickSound();
 
-  const scheme = getScheme(schemeId);
+  const handleClose = () => {
+    playClose();
+    onClose();
+  };
+
+  if (!scheme) return null;
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto frosted-glass border-2 border-metallic-gold/40 p-0 shadow-official">
-        {/* Header with Close Button */}
-        <DialogHeader className="sticky top-0 z-10 frosted-glass border-b border-metallic-gold/30 p-6">
-          <div className="flex items-start justify-between gap-4">
+    <Dialog open={isOpen} onOpenChange={(open) => {
+      if (!open) {
+        playClose();
+        onClose();
+      }
+    }}>
+      <DialogContent 
+        className="frosted-glass border-metallic-gold/30 max-w-5xl max-h-[90vh] overflow-hidden p-0"
+        aria-describedby="scheme-description"
+      >
+        <DialogHeader className="px-6 pt-6 pb-4 border-b border-metallic-gold/25">
+          <div className="flex items-start gap-4">
+            <img
+              src={scheme.iconPath}
+              alt={scheme.label}
+              className="w-16 h-16 md:w-20 md:h-20 object-contain flex-shrink-0"
+            />
             <div className="flex-1">
-              <DialogTitle className="heading-lg text-metallic-gold neon-glow-subtle mb-2">
-                {scheme.label}
-              </DialogTitle>
-              <p className="body-sm text-official-secondary">{scheme.description}</p>
+              <DialogTitle className="heading-md mb-2">{scheme.label}</DialogTitle>
+              <p id="scheme-description" className="body-sm text-official-secondary">
+                {scheme.description}
+              </p>
             </div>
-            <button
-              onClick={onClose}
-              className="flex-shrink-0 p-2 rounded-full hover:bg-neon-red/20 transition-colors focus:outline-none focus:ring-2 focus:ring-metallic-gold"
-              aria-label="Close modal"
-            >
-              <X className="w-6 h-6 text-official-primary hover:text-neon-red transition-colors" />
-            </button>
           </div>
         </DialogHeader>
 
-        {/* Tabs Content */}
-        <div className="p-6">
+        <div className="overflow-y-auto px-6 py-6" style={{ maxHeight: 'calc(90vh - 180px)' }}>
           <SchemeTabs scheme={scheme} />
         </div>
+
+        <button
+          onClick={handleClose}
+          className="absolute top-4 right-4 p-2 rounded-lg bg-matte-black/30 hover:bg-matte-black/50 transition-colors focus:outline-none focus:ring-2 focus:ring-metallic-gold"
+          aria-label="Close modal"
+        >
+          <X className="w-5 h-5 text-official-primary" />
+        </button>
       </DialogContent>
     </Dialog>
   );

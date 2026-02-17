@@ -1,24 +1,101 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T11:43:13.678Z",
+  "generatedAt": "2026-02-17T04:09:47.941Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 4,
+    "implemented": 4,
     "items": [
       {
-        "id": "REQ-21",
-        "summary": "Remove the footer attribution text/link that reads “Built with … using caffeine.ai” (including the heart icon and the external link to caffeine.ai) so it is no longer displayed anywhere in the UI.",
+        "id": "REQ-1",
+        "summary": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/footer/Footer.tsx"
+          "frontend/src/index.css",
+          "frontend/src/components/header/FrostedHeader.tsx",
+          "frontend/src/components/schemes/SchemeCard.tsx",
+          "frontend/src/components/gallery/GalleryCard.tsx",
+          "frontend/src/components/gallery/GalleryModal.tsx",
+          "frontend/src/components/gallery/GalleryLightbox.tsx",
+          "frontend/src/components/support/CallFloatingButton.tsx",
+          "frontend/src/components/support/WhatsAppFloatingButton.tsx",
+          "frontend/src/components/ippb/IppbGridCard.tsx",
+          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "frontend/src/components/prompt/PromptCopySection.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/footer/Footer.tsx"
+          "frontend/src/index.css",
+          "frontend/src/components/header/FrostedHeader.tsx",
+          "frontend/src/components/schemes/SchemeCard.tsx",
+          "frontend/src/components/gallery/GalleryCard.tsx",
+          "frontend/src/components/gallery/GalleryModal.tsx",
+          "frontend/src/components/gallery/GalleryLightbox.tsx",
+          "frontend/src/components/support/CallFloatingButton.tsx",
+          "frontend/src/components/support/WhatsAppFloatingButton.tsx",
+          "frontend/src/components/ippb/IppbGridCard.tsx",
+          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "frontend/src/components/prompt/PromptCopySection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/header/It20Modal.tsx",
+          "frontend/src/components/schemes/SchemeModal.tsx",
+          "frontend/src/components/gallery/GalleryModal.tsx",
+          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
+          "frontend/src/components/prompt/PromptCopySection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/header/It20Modal.tsx",
+          "frontend/src/components/schemes/SchemeModal.tsx",
+          "frontend/src/components/gallery/GalleryModal.tsx",
+          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
+          "frontend/src/components/prompt/PromptCopySection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/header/It20Modal.tsx",
+          "frontend/src/components/schemes/SchemeModal.tsx",
+          "frontend/src/components/gallery/GalleryModal.tsx",
+          "frontend/src/components/gallery/GalleryLightbox.tsx",
+          "frontend/src/components/profile/BpmProfileCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/header/It20Modal.tsx",
+          "frontend/src/components/schemes/SchemeModal.tsx",
+          "frontend/src/components/gallery/GalleryModal.tsx",
+          "frontend/src/components/gallery/GalleryLightbox.tsx",
+          "frontend/src/components/profile/BpmProfileCard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/App.tsx",
+          "frontend/src/components"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css"
         ]
       }
     ]
@@ -28,7 +105,21 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/footer/Footer.tsx",
+    "frontend/src/components/gallery/GalleryCard.tsx",
+    "frontend/src/components/gallery/GalleryLightbox.tsx",
+    "frontend/src/components/gallery/GalleryModal.tsx",
+    "frontend/src/components/header/FrostedHeader.tsx",
+    "frontend/src/components/header/It20Modal.tsx",
+    "frontend/src/components/ippb/IppbGridCard.tsx",
+    "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+    "frontend/src/components/profile/BpmProfileCard.tsx",
+    "frontend/src/components/prompt/PromptCopySection.tsx",
+    "frontend/src/components/schemes/SchemeCard.tsx",
+    "frontend/src/components/schemes/SchemeModal.tsx",
+    "frontend/src/components/support/CallFloatingButton.tsx",
+    "frontend/src/components/support/WhatsAppFloatingButton.tsx",
+    "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
+    "frontend/src/index.css",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

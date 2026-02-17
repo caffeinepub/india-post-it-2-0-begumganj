@@ -1,47 +1,90 @@
 {
   "kind": "build_request",
-  "title": "Remove “Built with using caffeine.ai” attribution from footer",
+  "title": "Restore UI to the previous version (rollback recent blinking/color changes)",
+  "projectName": "IPPB Interactive Portal",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-21",
-      "text": "Remove the footer attribution text/link that reads “Built with … using caffeine.ai” (including the heart icon and the external link to caffeine.ai) so it is no longer displayed anywhere in the UI.",
+      "id": "REQ-1",
+      "text": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-4"
         ],
         "quotes": [
-          "remove-'Built with using caffeine.ai'"
+          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
         ]
       },
       "acceptanceCriteria": [
-        "The footer no longer renders the attribution paragraph containing the text “Built with” / “using” and the “caffeine.ai” link.",
-        "No other footer content is removed or changed (copyright and disclaimer remain visible and unchanged).",
-        "There is no remaining visible “caffeine.ai” branding text/link anywhere in the app UI."
+        "No icons blink anywhere in the UI (including scheme cards, header IT 2.0 icon, gallery icon, and floating buttons).",
+        "`icon-live-blink-2s` is no longer applied in React components, and the animation does not run in the browser."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Section titles and modal titles do not blink.",
+        "Headings are not forced to the special dark-red heading color introduced by `heading-primary-live` and instead follow the base heading styles."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Close (X) icons in all dialogs/modals/lightboxes do not blink.",
+        "Close (X) icons are not forced to the special red color introduced by `close-x-live-blink-3s`."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
+        ]
+      },
+      "acceptanceCriteria": [
+        "There are no remaining references to the rollbacked blink/color utilities in `frontend/src` (including CSS and component classNames).",
+        "The UI has no new blink-based effects compared to the previous version and behaves normally under `prefers-reduced-motion` (no special-casing needed for removed effects)."
       ]
     }
   ],
   "constraints": [
-    "Use English for any user-facing text.",
-    "Do not edit files under frontend/src/components/ui or any other paths listed as immutable in SYSTEM_CONTEXT."
+    "Do not edit files under `frontend/src/components/ui` (read-only UI components must be composed, not modified).",
+    "Do not edit immutable hook/bootstrap files: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`.",
+    "Backend must remain single-actor; do not add additional canisters/services."
   ],
   "nonGoals": [
-    "Changing footer styling beyond what is necessary to remove the attribution block.",
-    "Any backend changes or Motoko canister changes."
+    "Adding new animations or additional visual effects.",
+    "Introducing new features or changing site content/structure beyond rolling back the recent blinking/color-related changes.",
+    "Backend changes (no Motoko logic changes required for this rollback)."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

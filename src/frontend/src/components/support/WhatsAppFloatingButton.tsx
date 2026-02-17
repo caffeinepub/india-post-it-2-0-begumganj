@@ -13,17 +13,17 @@ export function WhatsAppFloatingButton() {
       aria-label="Contact us on WhatsApp"
     >
       <div className="relative">
-        {/* Pulsing Glow Effect */}
-        <div className="absolute inset-0 bg-neon-red rounded-full blur-xl opacity-50 group-hover:opacity-80 pulse-glow" />
+        {/* Subtle Glow Effect */}
+        <div className="absolute inset-0 bg-neon-red rounded-full blur-lg opacity-30 group-hover:opacity-50 pulse-glow" />
         
         {/* Button */}
-        <div className="relative w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-neon-red to-neon-red/80 rounded-full flex items-center justify-center shadow-glow-red-strong transform transition-transform duration-300 group-hover:scale-110 group-focus:scale-110 focus:outline-none focus:ring-2 focus:ring-metallic-gold focus:ring-offset-2 focus:ring-offset-matte-black">
-          <MessageCircle className="w-8 h-8 md:w-10 md:h-10 text-white" />
+        <div className="relative w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-neon-red to-neon-red/80 rounded-full flex items-center justify-center shadow-official transform transition-transform duration-200 group-hover:scale-105 group-focus:scale-105 focus:outline-none focus:ring-2 focus:ring-metallic-gold focus:ring-offset-2 focus:ring-offset-matte-black">
+          <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-white" />
         </div>
 
         {/* Tooltip */}
-        <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="frosted-glass-light px-4 py-2 rounded-lg border-2 border-metallic-gold/40 whitespace-nowrap shadow-official">
+        <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+          <div className="frosted-glass-light px-3 py-2 rounded-md border border-metallic-gold/30 whitespace-nowrap shadow-official-sm">
             <p className="body-sm font-semibold text-official-primary">Contact Us</p>
             <p className="body-sm text-official-secondary">{phoneNumber}</p>
           </div>

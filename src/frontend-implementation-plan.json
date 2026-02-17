@@ -1,21 +1,180 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Remove caffeine.ai attribution from footer",
+  "title": "Rollback blink/color utility classes to restore previous UI styling",
   "requirements": [
     {
-      "id": "REQ-21",
-      "summary": "Remove the “Built with … using caffeine.ai” attribution block (heart icon + external link) from the footer while leaving all other footer content unchanged.",
+      "id": "REQ-1",
+      "summary": "Remove the live blink icon animation by eliminating `icon-live-blink-2s` usage and disabling its CSS animation.",
       "acceptanceCriteria": [
-        "The footer no longer renders the attribution paragraph containing the text “Built with” / “using” and the “caffeine.ai” link.",
-        "No other footer content is removed or changed (copyright and disclaimer remain visible and unchanged).",
-        "There is no remaining visible “caffeine.ai” branding text/link anywhere in the app UI."
+        "No icons blink anywhere in the UI (including scheme cards, header IT 2.0 icon, gallery icon, and floating buttons).",
+        "`icon-live-blink-2s` is no longer applied in React components, and the animation does not run in the browser."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/footer/Footer.tsx",
+          "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Remove the attribution <p> that contains “Built with … using caffeine.ai”, including the Heart icon and external caffeine.ai link; also remove any now-unused variables/imports (e.g., Heart import and appIdentifier) while keeping the copyright and disclaimer blocks unchanged."
+          "description": "Remove (or fully disable) the `.icon-live-blink-2s` utility and its `@keyframes iconBlink2s` so no icon blinking animation can run."
+        },
+        {
+          "path": "frontend/src/components/header/FrostedHeader.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from the IT 2.0 header icon image so it no longer blinks."
+        },
+        {
+          "path": "frontend/src/components/schemes/SchemeCard.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from scheme card icons and the hover-indicator arrow so they no longer blink."
+        },
+        {
+          "path": "frontend/src/components/gallery/GalleryCard.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from the gallery card icon so it no longer blinks."
+        },
+        {
+          "path": "frontend/src/components/gallery/GalleryModal.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from the gallery modal download icon overlay so it no longer blinks."
+        },
+        {
+          "path": "frontend/src/components/gallery/GalleryLightbox.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from lightbox controls (download/prev/next icons) so they no longer blink."
+        },
+        {
+          "path": "frontend/src/components/support/CallFloatingButton.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from the phone icon so the floating call button icon no longer blinks."
+        },
+        {
+          "path": "frontend/src/components/support/WhatsAppFloatingButton.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from the WhatsApp icon so the floating WhatsApp button icon no longer blinks."
+        },
+        {
+          "path": "frontend/src/components/ippb/IppbGridCard.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from the IPPB card logo and hover-indicator arrow so they no longer blink."
+        },
+        {
+          "path": "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from the IPPB overlay header logo and category icons so they no longer blink."
+        },
+        {
+          "path": "frontend/src/components/prompt/PromptCopySection.tsx",
+          "operation": "modify",
+          "description": "Remove `icon-live-blink-2s` from copy/check icons so they no longer blink."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Restore headings by removing `heading-primary-live` usage and disabling its forced dark-red/blink styling.",
+      "acceptanceCriteria": [
+        "Section titles and modal titles do not blink.",
+        "Headings are not forced to the special dark-red heading color introduced by `heading-primary-live` and instead follow the base heading styles."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Remove (or fully disable) the `.heading-primary-live` utility and its `@keyframes headingBlink2s` so headings are not forced dark-red and cannot blink."
+        },
+        {
+          "path": "frontend/src/components/header/It20Modal.tsx",
+          "operation": "modify",
+          "description": "Remove `heading-primary-live` from the IT 2.0 modal title so it uses base heading styles (no blink/no forced dark red)."
+        },
+        {
+          "path": "frontend/src/components/schemes/SchemeModal.tsx",
+          "operation": "modify",
+          "description": "Remove `heading-primary-live` from the scheme modal title so it uses base heading styles (no blink/no forced dark red)."
+        },
+        {
+          "path": "frontend/src/components/gallery/GalleryModal.tsx",
+          "operation": "modify",
+          "description": "Remove `heading-primary-live` from the gallery modal title so it uses base heading styles (no blink/no forced dark red)."
+        },
+        {
+          "path": "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "operation": "modify",
+          "description": "Remove `heading-primary-live` from the IPPB overlay title so it uses base heading styles (no blink/no forced dark red)."
+        },
+        {
+          "path": "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
+          "operation": "modify",
+          "description": "Remove `heading-primary-live` from the testimonials section heading so it uses base heading styles (no blink/no forced dark red)."
+        },
+        {
+          "path": "frontend/src/components/prompt/PromptCopySection.tsx",
+          "operation": "modify",
+          "description": "Remove `heading-primary-live` from the prompt section heading so it uses base heading styles (no blink/no forced dark red)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Restore modal/overlay close (X) buttons by removing `close-x-live-blink-3s` usage and disabling its forced red/blink styling.",
+      "acceptanceCriteria": [
+        "Close (X) icons in all dialogs/modals/lightboxes do not blink.",
+        "Close (X) icons are not forced to the special red color introduced by `close-x-live-blink-3s`."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Remove (or fully disable) the `.close-x-live-blink-3s` utility and its `@keyframes closeBlink3s` so close icons are not forced red and cannot blink."
+        },
+        {
+          "path": "frontend/src/components/header/It20Modal.tsx",
+          "operation": "modify",
+          "description": "Remove `close-x-live-blink-3s` from the IT 2.0 modal close (X) icon so it uses the prior/base styling."
+        },
+        {
+          "path": "frontend/src/components/schemes/SchemeModal.tsx",
+          "operation": "modify",
+          "description": "Remove `close-x-live-blink-3s` from the scheme modal close (X) icon so it uses the prior/base styling."
+        },
+        {
+          "path": "frontend/src/components/gallery/GalleryModal.tsx",
+          "operation": "modify",
+          "description": "Remove `close-x-live-blink-3s` from the gallery modal close (X) icon so it uses the prior/base styling."
+        },
+        {
+          "path": "frontend/src/components/gallery/GalleryLightbox.tsx",
+          "operation": "modify",
+          "description": "Remove `close-x-live-blink-3s` from the lightbox close (X) icon so it uses the prior/base styling."
+        },
+        {
+          "path": "frontend/src/components/profile/BpmProfileCard.tsx",
+          "operation": "modify",
+          "description": "Remove `close-x-live-blink-3s` from the BPM profile overlay close (X) icon so it uses the prior/base styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Audit and revert any remaining blink/color-update helper utilities and references so the UI matches the pre-change version.",
+      "acceptanceCriteria": [
+        "There are no remaining references to the rollbacked blink/color utilities in `frontend/src` (including CSS and component classNames).",
+        "The UI has no new blink-based effects compared to the previous version and behaves normally under `prefers-reduced-motion` (no special-casing needed for removed effects)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Remove any leftover blink/color-update-only helpers and cleanup the `prefers-reduced-motion` block so it no longer references removed blink utilities (`icon-live-blink-2s`, `heading-primary-live`, `close-x-live-blink-3s`)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Run a local audit of composed components used by `App` (header, scheme grid/modals, gallery, profile overlay, floating buttons) and ensure no blink/color rollback classes remain referenced indirectly or via props/className composition."
+        },
+        {
+          "path": "frontend/src/components",
+          "operation": "modify",
+          "description": "Perform a project-wide audit within `frontend/src/components` to remove any remaining usages of rollbacked blink/color utilities in className strings and ensure the visual behavior matches the pre-change version without introducing new effects."
         }
       ]
     }
