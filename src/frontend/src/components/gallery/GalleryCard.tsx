@@ -1,4 +1,4 @@
-import { Images } from 'lucide-react';
+import { Images, ArrowRight } from 'lucide-react';
 import { useClickSound } from '@/hooks/useClickSound';
 
 interface GalleryCardProps {
@@ -8,49 +8,56 @@ interface GalleryCardProps {
 export function GalleryCard({ onClick }: GalleryCardProps) {
   const { playTap } = useClickSound();
 
-  const handleActivation = () => {
+  const handleClick = () => {
     playTap();
     onClick();
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
-    <button
-      onClick={handleActivation}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleActivation();
-        }
-      }}
-      className="group relative frosted-glass-light rounded-lg p-6 border border-[oklch(var(--official-dark-red)/0.4)] hover:border-[oklch(var(--official-dark-red)/0.7)] transition-all duration-200 hover:shadow-official focus:outline-none focus:ring-2 focus:ring-[oklch(var(--official-dark-red))] focus:ring-offset-2 focus:ring-offset-matte-black gallery-card-glow"
+    <div
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-matte-black/60 to-matte-black/40 backdrop-blur-md border border-icon-accent-red/30 hover:border-icon-accent-blue/50 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-icon-accent-red focus:ring-offset-2 focus:ring-offset-matte-black gallery-card-glow"
       aria-label="Open Gallery"
     >
-      {/* Icon Container */}
-      <div className="relative mb-5 aspect-square w-full max-w-[160px] mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-br from-[oklch(var(--official-dark-red)/0.15)] to-neon-red/10 rounded-lg blur-md group-hover:blur-lg transition-all duration-200" />
-        <div className="relative w-full h-full flex items-center justify-center">
-          <Images className="w-24 h-24 text-[oklch(var(--official-dark-red))] drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-200" />
+      {/* Icon Backplate with Red/Blue Gradient */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-icon-accent-red/10 to-icon-accent-blue/10 rounded-bl-full opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
+
+      <div className="relative p-6 flex flex-col h-full">
+        {/* Icon with continuous animation */}
+        <div className="mb-4">
+          <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-icon-accent-red/20 to-icon-accent-blue/20 flex items-center justify-center">
+            <Images className="w-8 h-8 text-icon-accent-red icon-live" />
+          </div>
+        </div>
+
+        {/* Label */}
+        <h3 className="heading-sm mb-2 text-white group-hover:text-icon-accent-red transition-colors duration-200">
+          Gallery
+        </h3>
+
+        {/* Description */}
+        <p className="body-sm details-text-red flex-1 mb-4">
+          View our collection of official documents and certificates
+        </p>
+
+        {/* Hover Indicator */}
+        <div className="flex items-center gap-2 text-icon-accent-blue group-hover:text-icon-accent-red transition-colors duration-200">
+          <span className="body-sm font-semibold">View Gallery</span>
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-icon-accent-red/20 to-icon-accent-blue/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+            <ArrowRight className="w-4 h-4 icon-live" />
+          </div>
         </div>
       </div>
-
-      {/* Label */}
-      <h3 className="heading-md text-[oklch(var(--official-dark-red))] group-hover:text-neon-red transition-colors duration-200 mb-2">
-        Gallery
-      </h3>
-      
-      {/* Description */}
-      <p className="body-sm text-official-secondary group-hover:text-official-primary transition-colors duration-200">
-        View our collection of moments
-      </p>
-
-      {/* Hover Indicator */}
-      <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <div className="w-7 h-7 rounded-full bg-[oklch(var(--official-dark-red)/0.15)] flex items-center justify-center border border-[oklch(var(--official-dark-red)/0.3)]">
-          <svg className="w-3.5 h-3.5 text-[oklch(var(--official-dark-red))]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </div>
-    </button>
+    </div>
   );
 }

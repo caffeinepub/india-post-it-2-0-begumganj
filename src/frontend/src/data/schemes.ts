@@ -34,7 +34,7 @@ export const schemes: Record<SchemeId, SchemeData> = {
   SB: {
     id: 'SB',
     label: 'Post Office Savings Account',
-    shortLabel: 'Savings Account',
+    shortLabel: 'SB',
     iconPath: '/assets/generated/icon-sb-hourglass.dim_1024x1024.png',
     description: 'A secure savings account with competitive interest rates',
     tabs: {
@@ -59,7 +59,7 @@ export const schemes: Record<SchemeId, SchemeData> = {
   SSA: {
     id: 'SSA',
     label: 'Sukanya Samriddhi Account',
-    shortLabel: 'Sukanya Samriddhi',
+    shortLabel: 'Sukanya',
     iconPath: '/assets/generated/icon-ssa-small-girl.dim_1024x1024.png',
     description: 'A special savings scheme for the girl child with attractive returns',
     tabs: {
@@ -84,7 +84,7 @@ export const schemes: Record<SchemeId, SchemeData> = {
   RD: {
     id: 'RD',
     label: 'Recurring Deposit Account',
-    shortLabel: 'Recurring Deposit',
+    shortLabel: 'RD',
     iconPath: '/assets/generated/icon-rd-coin-staircase.dim_1024x1024.png',
     description: 'Build wealth systematically with monthly deposits',
     tabs: {
@@ -134,7 +134,7 @@ export const schemes: Record<SchemeId, SchemeData> = {
   TD: {
     id: 'TD',
     label: 'Time Deposit (Fixed Deposit)',
-    shortLabel: 'Time Deposit',
+    shortLabel: 'TD',
     iconPath: '/assets/generated/icon-td-vault.dim_1024x1024.png',
     description: 'Lock in your savings for guaranteed returns',
     tabs: {
@@ -159,7 +159,7 @@ export const schemes: Record<SchemeId, SchemeData> = {
   PLI_RPLI: {
     id: 'PLI_RPLI',
     label: 'Postal Life Insurance / Rural Postal Life Insurance',
-    shortLabel: 'PLI / RPLI',
+    shortLabel: 'PLI/RPLI',
     iconPath: '/assets/generated/icon-pli-shield.dim_1024x1024.png',
     description: 'Comprehensive life insurance coverage for you and your family',
     tabs: {

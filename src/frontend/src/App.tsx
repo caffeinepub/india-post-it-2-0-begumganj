@@ -10,11 +10,11 @@ import { RightEdgeMotto } from './components/motto/RightEdgeMotto';
 import { TestimonialsMarquee } from './components/testimonials/TestimonialsMarquee';
 import { WhatsAppFloatingButton } from './components/support/WhatsAppFloatingButton';
 import { CallFloatingButton } from './components/support/CallFloatingButton';
+import { IppbFloatingButton } from './components/ippb/IppbFloatingButton';
 import { Footer } from './components/footer/Footer';
 import { GalleryModal } from './components/gallery/GalleryModal';
 import { useAudioUnlock } from './hooks/useAudioUnlock';
 import { useGlobalTapSound } from './hooks/useGlobalTapSound';
-import { PromptCopySection } from './components/prompt/PromptCopySection';
 import { getScheme } from './data/schemes';
 
 function App() {
@@ -57,9 +57,6 @@ function App() {
 
           {/* Testimonials */}
           <TestimonialsMarquee />
-
-          {/* Prompt Copy Section */}
-          <PromptCopySection />
         </main>
 
         {/* Footer */}
@@ -73,6 +70,9 @@ function App() {
 
         {/* WhatsApp Floating Button (Right) */}
         <WhatsAppFloatingButton />
+
+        {/* IPPB Floating Button (Center Bottom) */}
+        <IppbFloatingButton />
 
         {/* Scheme Modal */}
         <SchemeModal

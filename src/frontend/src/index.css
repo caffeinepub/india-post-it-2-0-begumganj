@@ -7,17 +7,17 @@
         --radius: 0.5rem;
         /* Dark Luxury Theme - Light Mode Base (rarely used, app is dark-first) */
         --background: 0.95 0 0;
-        --foreground: 0.145 0 0;
+        --foreground: 0.58 0.28 12;
         --card: 1 0 0;
-        --card-foreground: 0.145 0 0;
+        --card-foreground: 0.58 0.28 12;
         --popover: 1 0 0;
-        --popover-foreground: 0.145 0 0;
+        --popover-foreground: 0.58 0.28 12;
         --primary: 0.205 0 0;
         --primary-foreground: 0.985 0 0;
         --secondary: 0.97 0 0;
         --secondary-foreground: 0.205 0 0;
         --muted: 0.97 0 0;
-        --muted-foreground: 0.556 0 0;
+        --muted-foreground: 0.58 0.28 12;
         --accent: 0.97 0 0;
         --accent-foreground: 0.205 0 0;
         --destructive: 0.577 0.245 27.325;
@@ -32,28 +32,48 @@
         --metallic-gold: 0.75 0.15 85;
         --frosted-glass: 0.15 0 0 / 0.7;
         
-        /* Official Dark Red for IT 2.0 Pill */
+        /* Official Dark Red for IT 2.0 Pill and BPM Profile Name */
         --official-dark-red: 0.35 0.18 15;
+        
+        /* Icon Accent Colors - Red and Blue */
+        --icon-accent-red: 0.58 0.28 12;
+        --icon-accent-blue: 0.60 0.22 240;
+        
+        /* RBP Scheme Colors - Red, Blue, Pink */
+        --rbp-red: 0.58 0.28 12;
+        --rbp-blue: 0.60 0.22 240;
+        --rbp-pink: 0.65 0.25 340;
+        
+        /* Animated Blue/Yellow/Black Text Colors */
+        --animated-blue: 0.65 0.25 240;
+        --animated-yellow: 0.75 0.15 85;
+        --animated-black: 0.15 0 0;
+        
+        /* Details Text Red */
+        --details-red: 0.58 0.28 12;
+        
+        /* Copyright Warning Blue */
+        --copyright-blue: 0.65 0.25 240;
     }
 
     .dark {
         /* Dark Luxury Theme - Primary Mode */
         --background: 0.05 0 0;
-        --foreground: 0.98 0 0;
+        --foreground: 0.58 0.28 12;
         --card: 0.1 0 0;
-        --card-foreground: 0.98 0 0;
+        --card-foreground: 0.58 0.28 12;
         --popover: 0.08 0 0;
-        --popover-foreground: 0.98 0 0;
+        --popover-foreground: 0.58 0.28 12;
         --primary: 0.75 0.15 85;
         --primary-foreground: 0.05 0 0;
         --secondary: 0.15 0 0;
-        --secondary-foreground: 0.95 0 0;
+        --secondary-foreground: 0.58 0.28 12;
         --muted: 0.15 0 0;
-        --muted-foreground: 0.78 0 0;
+        --muted-foreground: 0.58 0.28 12;
         --accent: 0.58 0.28 12;
-        --accent-foreground: 0.98 0 0;
+        --accent-foreground: 0.58 0.28 12;
         --destructive: 0.58 0.28 12;
-        --destructive-foreground: 0.98 0 0;
+        --destructive-foreground: 0.58 0.28 12;
         --border: 0.25 0 0;
         --input: 0.18 0 0;
         --ring: 0.58 0.28 12;
@@ -64,14 +84,34 @@
         --metallic-gold: 0.75 0.15 85;
         --frosted-glass: 0.15 0 0 / 0.7;
         
-        /* Official Typography Tokens */
-        --text-primary: 0.98 0 0;
-        --text-secondary: 0.85 0 0;
-        --text-tertiary: 0.72 0 0;
-        --text-disabled: 0.55 0 0;
+        /* Official Typography Tokens - All Red */
+        --text-primary: 0.58 0.28 12;
+        --text-secondary: 0.58 0.28 12;
+        --text-tertiary: 0.58 0.28 12;
+        --text-disabled: 0.55 0.25 12;
         
-        /* Official Dark Red for IT 2.0 Pill */
+        /* Official Dark Red for IT 2.0 Pill and BPM Profile Name */
         --official-dark-red: 0.35 0.18 15;
+        
+        /* Icon Accent Colors - Red and Blue */
+        --icon-accent-red: 0.58 0.28 12;
+        --icon-accent-blue: 0.60 0.22 240;
+        
+        /* RBP Scheme Colors - Red, Blue, Pink */
+        --rbp-red: 0.58 0.28 12;
+        --rbp-blue: 0.60 0.22 240;
+        --rbp-pink: 0.65 0.25 340;
+        
+        /* Animated Blue/Yellow/Black Text Colors */
+        --animated-blue: 0.65 0.25 240;
+        --animated-yellow: 0.75 0.15 85;
+        --animated-black: 0.15 0 0;
+        
+        /* Details Text Red */
+        --details-red: 0.58 0.28 12;
+        
+        /* Copyright Warning Blue */
+        --copyright-blue: 0.65 0.25 240;
     }
 
     * {
@@ -86,6 +126,16 @@
     
     html {
         scroll-behavior: smooth;
+    }
+    
+    /* Force all black text to red */
+    .text-black,
+    .text-matte-black,
+    .text-gray-900,
+    .text-gray-800,
+    .text-gray-700,
+    .text-gray-600 {
+        color: oklch(var(--details-red)) !important;
     }
 }
 
@@ -113,84 +163,279 @@
         box-shadow: 0 2px 6px oklch(0.25 0.18 15 / 0.4), inset 0 1px 0 oklch(0.50 0.15 15 / 0.3);
     }
     
-    /* Gallery Card Glow Animation */
-    .gallery-card-glow {
-        animation: galleryGlow 3s ease-in-out infinite;
+    /* BPM Profile Name - White with Live Shimmer Animation */
+    .bpm-profile-name {
+        color: oklch(0.98 0 0);
+        font-weight: 600;
+        background: linear-gradient(
+            90deg,
+            oklch(0.98 0 0) 0%,
+            oklch(1.0 0.05 60) 25%,
+            oklch(0.98 0 0) 50%,
+            oklch(1.0 0.05 60) 75%,
+            oklch(0.98 0 0) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: profileNameShimmer 3s ease-in-out infinite;
     }
     
-    @keyframes galleryGlow {
+    @keyframes profileNameShimmer {
         0%, 100% {
-            box-shadow: 0 0 8px oklch(var(--official-dark-red) / 0.3), 0 0 16px oklch(var(--official-dark-red) / 0.15);
+            background-position: 0% 50%;
         }
         50% {
-            box-shadow: 0 0 12px oklch(var(--official-dark-red) / 0.4), 0 0 24px oklch(var(--official-dark-red) / 0.2);
+            background-position: 100% 50%;
         }
     }
     
-    /* Gallery Modal Open Animation */
-    .gallery-modal-enter {
-        animation: galleryModalFadeIn 0.3s ease-out;
+    /* RBP Scheme Title - Red/Blue/Pink Animated Gradient */
+    .rbp-scheme-title {
+        background: linear-gradient(
+            90deg,
+            oklch(var(--rbp-red)) 0%,
+            oklch(var(--rbp-blue)) 33%,
+            oklch(var(--rbp-pink)) 66%,
+            oklch(var(--rbp-red)) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: rbpGradientShift 4s ease-in-out infinite;
+        font-weight: 700;
     }
     
-    @keyframes galleryModalFadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.95) translateY(-10px);
+    @keyframes rbpGradientShift {
+        0%, 100% {
+            background-position: 0% 50%;
         }
-        to {
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+    
+    /* Animated Blue/Yellow/Black Text - Replacing Pink */
+    .animated-blue-yellow-black-text {
+        background: linear-gradient(
+            90deg,
+            oklch(var(--animated-blue)) 0%,
+            oklch(var(--animated-yellow)) 33%,
+            oklch(var(--animated-black)) 66%,
+            oklch(var(--animated-blue)) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: blueYellowBlackShift 4s ease-in-out infinite;
+        font-weight: 600;
+    }
+    
+    @keyframes blueYellowBlackShift {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+    
+    /* Details Text Red - For modal/dialog body text */
+    .details-text-red {
+        color: oklch(var(--details-red));
+    }
+    
+    /* Copyright Warning Blue Text */
+    .copyright-blue-text {
+        color: oklch(var(--copyright-blue));
+    }
+    
+    /* Icon Live Animation - Continuous pulse for icons */
+    .icon-live {
+        animation: iconLivePulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes iconLivePulse {
+        0%, 100% {
             opacity: 1;
-            transform: scale(1) translateY(0);
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.75;
+            transform: scale(1.1);
         }
     }
     
-    /* Respect reduced motion preferences */
-    @media (prefers-reduced-motion: reduce) {
-        .gallery-card-glow {
-            animation: none;
-            box-shadow: 0 0 8px oklch(var(--official-dark-red) / 0.3), 0 0 16px oklch(var(--official-dark-red) / 0.15);
+    /* Gallery Close Button - Blue/Yellow/Black Live Animation */
+    .gallery-close-button {
+        background: linear-gradient(
+            135deg,
+            oklch(var(--animated-blue)) 0%,
+            oklch(var(--animated-yellow)) 50%,
+            oklch(var(--animated-black)) 100%
+        );
+        background-size: 200% 200%;
+        animation: galleryCloseShift 2s ease-in-out infinite;
+    }
+    
+    @keyframes galleryCloseShift {
+        0%, 100% {
+            background-position: 0% 50%;
         }
-        
-        .gallery-modal-enter {
-            animation: none;
-        }
-        
-        .ippb-overlay-enter,
-        .ippb-header-reveal,
-        .ippb-card-stagger-1,
-        .ippb-card-stagger-2,
-        .ippb-card-stagger-3 {
-            animation: none !important;
+        50% {
+            background-position: 100% 50%;
         }
     }
     
-    /* IPPB Overlay Glass Effect */
+    /* Copyright Warning Modal - Red Pulsing Border */
+    .copyright-warning-border {
+        border: 2px solid oklch(var(--neon-red));
+        animation: copyrightBorderPulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes copyrightBorderPulse {
+        0%, 100% {
+            border-color: oklch(var(--neon-red));
+            box-shadow: 0 0 0 0 oklch(var(--neon-red) / 0.7);
+        }
+        50% {
+            border-color: oklch(0.70 0.30 12);
+            box-shadow: 0 0 20px 5px oklch(var(--neon-red) / 0.4);
+        }
+    }
+    
+    /* Testimonials Marquee Animation */
+    .testimonials-marquee {
+        animation: marqueeScroll 30s linear infinite;
+    }
+    
+    @keyframes marqueeScroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    
+    /* Profile Overlay Live Glow */
+    .profile-overlay-glow {
+        animation: profileOverlayGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes profileOverlayGlow {
+        0%, 100% {
+            box-shadow: 0 0 20px oklch(var(--neon-red) / 0.3);
+        }
+        50% {
+            box-shadow: 0 0 40px oklch(var(--neon-red) / 0.5);
+        }
+    }
+    
+    /* Blinking Cursor for Typewriter */
+    .blinking-cursor {
+        animation: cursorBlink 1s step-end infinite;
+    }
+    
+    @keyframes cursorBlink {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+}
+
+@layer components {
+    /* Official Panel */
+    .official-panel {
+        background: oklch(0.05 0 0 / 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        @apply border rounded-lg shadow-lg;
+        border-color: oklch(var(--metallic-gold) / 0.2);
+    }
+    
+    /* Official Shadow */
+    .shadow-official {
+        box-shadow: 0 4px 20px oklch(0 0 0 / 0.3), 0 0 40px oklch(var(--neon-red) / 0.1);
+    }
+    
+    /* Official Divider */
+    .official-divider {
+        border-color: oklch(var(--metallic-gold) / 0.2);
+    }
+    
+    /* Typography Hierarchy */
+    .heading-xl {
+        @apply text-4xl md:text-5xl font-bold tracking-tight;
+    }
+    
+    .heading-lg {
+        @apply text-3xl md:text-4xl font-bold tracking-tight;
+    }
+    
+    .heading-md {
+        @apply text-2xl md:text-3xl font-semibold tracking-tight;
+    }
+    
+    .heading-sm {
+        @apply text-xl md:text-2xl font-semibold;
+    }
+    
+    .body-lg {
+        @apply text-lg leading-relaxed;
+    }
+    
+    .body-base {
+        @apply text-base leading-relaxed;
+    }
+    
+    .body-sm {
+        @apply text-sm leading-relaxed;
+    }
+    
+    /* IPPB Overlay Styles */
     .ippb-glass-overlay {
-        background: oklch(0.08 0 0 / 0.85);
-        backdrop-filter: blur(24px) saturate(1.2);
-        -webkit-backdrop-filter: blur(24px) saturate(1.2);
+        @apply frosted-glass-light rounded-xl p-6 md:p-8;
     }
     
-    /* IPPB Overlay Premium Animations */
+    .ippb-category-card {
+        @apply official-panel p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-official;
+    }
+    
+    .ippb-label-blue-yellow-black {
+        @apply animated-blue-yellow-black-text;
+    }
+    
+    .ippb-close-button {
+        @apply icon-live;
+    }
+    
     .ippb-overlay-enter {
-        animation: ippbOverlayReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: overlayEnter 0.3s ease-out;
     }
     
-    @keyframes ippbOverlayReveal {
+    @keyframes overlayEnter {
         from {
             opacity: 0;
-            transform: scale(0.96) translateY(-20px);
+            transform: scale(0.95);
         }
         to {
             opacity: 1;
-            transform: scale(1) translateY(0);
+            transform: scale(1);
         }
     }
     
     .ippb-header-reveal {
-        animation: ippbHeaderFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        animation: headerReveal 0.4s ease-out 0.1s both;
     }
     
-    @keyframes ippbHeaderFade {
+    @keyframes headerReveal {
         from {
             opacity: 0;
             transform: translateY(-10px);
@@ -201,147 +446,26 @@
         }
     }
     
-    /* IPPB Category Cards with Staggered Reveal */
-    .ippb-category-card {
-        position: relative;
-        padding: 1.5rem;
-        border-radius: 0.75rem;
-        background: oklch(0.12 0 0 / 0.5);
-        border: 1px solid oklch(0.25 0 0 / 0.4);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        overflow: hidden;
-    }
-    
-    .ippb-category-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            oklch(var(--metallic-gold) / 0.08),
-            transparent
-        );
-        transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .ippb-category-card:hover {
-        background: oklch(0.14 0 0 / 0.6);
-        border-color: oklch(0.35 0 0 / 0.5);
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px oklch(0 0 0 / 0.3), 0 0 16px oklch(var(--metallic-gold) / 0.1);
-    }
-    
-    .ippb-category-card:hover::before {
-        left: 100%;
-    }
-    
     .ippb-card-stagger-1 {
-        animation: ippbCardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        animation: cardStagger 0.4s ease-out 0.2s both;
     }
     
     .ippb-card-stagger-2 {
-        animation: ippbCardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        animation: cardStagger 0.4s ease-out 0.3s both;
     }
     
     .ippb-card-stagger-3 {
-        animation: ippbCardReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        animation: cardStagger 0.4s ease-out 0.4s both;
     }
     
-    @keyframes ippbCardReveal {
+    @keyframes cardStagger {
         from {
             opacity: 0;
-            transform: translateY(20px) scale(0.95);
+            transform: translateY(20px);
         }
         to {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
-    }
-    
-    /* Typography Utilities */
-    .heading-lg {
-        font-size: clamp(1.75rem, 4vw, 2.5rem);
-        font-weight: 700;
-        line-height: 1.2;
-        letter-spacing: var(--official);
-        color: oklch(var(--text-primary));
-    }
-    
-    .heading-md {
-        font-size: clamp(1.25rem, 3vw, 1.5rem);
-        font-weight: 600;
-        line-height: 1.3;
-        letter-spacing: var(--official);
-        color: oklch(var(--text-primary));
-    }
-    
-    .heading-sm {
-        font-size: clamp(1rem, 2.5vw, 1.125rem);
-        font-weight: 600;
-        line-height: 1.4;
-        letter-spacing: var(--official);
-        color: oklch(var(--text-primary));
-    }
-    
-    .body-base {
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.6;
-        color: oklch(var(--text-secondary));
-    }
-    
-    .body-sm {
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1.6;
-        color: oklch(var(--text-secondary));
-    }
-    
-    .body-xs {
-        font-size: 0.75rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: oklch(var(--text-tertiary));
-    }
-    
-    /* Official Color Utilities */
-    .text-official-primary {
-        color: oklch(var(--text-primary));
-    }
-    
-    .text-official-secondary {
-        color: oklch(var(--text-secondary));
-    }
-    
-    .text-official-tertiary {
-        color: oklch(var(--text-tertiary));
-    }
-    
-    .text-official-disabled {
-        color: oklch(var(--text-disabled));
-    }
-    
-    /* Text Contrast Helpers for Dark Backgrounds */
-    .text-on-dark {
-        color: oklch(0.98 0 0);
-    }
-    
-    .text-on-dark-secondary {
-        color: oklch(0.85 0 0);
-    }
-    
-    /* Official Divider */
-    .official-divider {
-        height: 1px;
-        background: linear-gradient(
-            to right,
-            transparent,
-            oklch(var(--border)),
-            transparent
-        );
     }
 }

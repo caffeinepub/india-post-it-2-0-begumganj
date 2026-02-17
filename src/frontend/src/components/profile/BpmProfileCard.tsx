@@ -1,124 +1,173 @@
 import { useState } from 'react';
-import { TypewriterNeon } from './TypewriterNeon';
 import { X } from 'lucide-react';
+import { TypewriterNeon } from './TypewriterNeon';
+import { ProfileRatingDialog } from './ProfileRatingDialog';
 import { useClickSound } from '@/hooks/useClickSound';
+import { useProfileRating } from '@/hooks/useProfileRating';
 
+/**
+ * BPM profile card with premium open/close animations, enhanced overlay transitions, and rating prompt on close.
+ * Displays IPPB expertise, insurance explanation skills, and friendly personality with updated contact number.
+ */
 export function BpmProfileCard() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showRatingDialog, setShowRatingDialog] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   const { playTap, playClose } = useClickSound();
+  const username = 'prabal-pratap';
+  const { rating } = useProfileRating(username);
 
-  const bioData = [
-    'Name: Prabal Pratap',
-    'Designation: Branch Post Master (BPM)',
-    'Branch Office: Mundla Chawal',
-    'Sub Office: Begumganj',
-    'Experience: 15+ years in postal services',
-    'Specialization: Financial services & customer relations'
-  ];
-
-  const handleOpen = () => {
+  const handleCardClick = () => {
     playTap();
     setIsExpanded(true);
+    setIsExiting(false);
   };
 
   const handleClose = () => {
     playClose();
-    setIsExpanded(false);
+    setIsExiting(true);
+    // Wait for exit animation before closing
+    setTimeout(() => {
+      setIsExpanded(false);
+      setIsExiting(false);
+      // Show rating dialog after overlay closes
+      setShowRatingDialog(true);
+    }, 300);
   };
 
-  const handleBackdropClick = () => {
-    playClose();
-    setIsExpanded(false);
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCardClick();
+    } else if (e.key === 'Escape' && isExpanded) {
+      e.preventDefault();
+      handleClose();
+    }
   };
+
+  const bioLines = [
+    '👤 Name: 𝐏𝐫𝐚𝐛𝐚𝐥 𝐏𝐫𝐚𝐭𝐚𝐩',
+    '📧 Email: prabalpratap@indiapost.gov.in',
+    '📱 Contact: 7771991108',
+    '🏢 Position: Branch Postmaster & IPPB Expert',
+    '📍 Location: Mundla Chawal, Begumganj, MP'
+  ];
 
   return (
     <>
-      {/* Compact Card */}
-      {!isExpanded && (
-        <div className="relative z-20 my-12 md:my-16">
-          <div className="container mx-auto px-4">
-            <button
-              onClick={handleOpen}
-              className="mx-auto block frosted-glass-light rounded-lg p-6 md:p-8 border border-metallic-gold/30 hover:border-metallic-gold/50 transition-all duration-200 hover:shadow-official focus:outline-none focus:ring-2 focus:ring-metallic-gold focus:ring-offset-2 focus:ring-offset-matte-black"
-            >
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                {/* Profile Photo */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-metallic-gold/20 rounded-full blur-lg" />
-                  <img
-                    src="/assets/generated/profile-prabal-pratap.dim_1024x1024.png"
-                    alt="Prabal Pratap - Branch Post Master"
-                    className="relative w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-metallic-gold/50"
-                  />
-                </div>
+      {/* Profile Card */}
+      <section className="w-full max-w-5xl mx-auto px-4 py-8">
+        <div
+          onClick={handleCardClick}
+          onKeyDown={handleKeyDown}
+          role="button"
+          tabIndex={0}
+          className="official-panel p-6 md:p-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-official focus:outline-none focus:ring-2 focus:ring-metallic-gold"
+          aria-label="View Branch Postmaster profile details"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            {/* Profile Image */}
+            <div className="flex-shrink-0">
+              <img
+                src="/assets/generated/profile-prabal-pratap.dim_1024x1024.png"
+                alt="Prabal Pratap - Branch Postmaster"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-metallic-gold/30 shadow-official"
+              />
+            </div>
 
-                {/* Basic Info */}
-                <div className="text-center md:text-left">
-                  <h3 className="heading-md text-metallic-gold mb-1">Prabal Pratap</h3>
-                  <p className="body-base text-neon-red font-semibold mb-1.5">Branch Post Master</p>
-                  <p className="body-sm text-official-secondary">Click to view full profile</p>
-                </div>
-              </div>
-            </button>
+            {/* Profile Info */}
+            <div className="flex-1 text-center md:text-left">
+              <h2 className="bpm-profile-name text-2xl md:text-3xl mb-2">
+                𝐏𝐫𝐚𝐛𝐚𝐥 𝐏𝐫𝐚𝐭𝐚𝐩
+              </h2>
+              <p className="body-base text-metallic-gold mb-3">
+                Branch Postmaster & IPPB Expert
+              </p>
+              <p className="body-sm animated-blue-yellow-black-text">
+                Specializing in IPPB services and insurance solutions with a friendly, helpful approach
+              </p>
+              {rating && (
+                <p className="body-sm text-metallic-gold mt-2">
+                  ⭐ Last rating: {Number(rating.rating)}/5
+                </p>
+              )}
+            </div>
           </div>
         </div>
-      )}
+      </section>
 
-      {/* Expanded Overlay */}
+      {/* Expanded Overlay with Premium Animations */}
       {isExpanded && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
-          {/* Background Dim */}
-          <div 
-            className="absolute inset-0 bg-matte-black/85 backdrop-blur-sm"
-            onClick={handleBackdropClick}
-          />
-
-          {/* Content */}
-          <div className="relative frosted-glass rounded-xl border border-metallic-gold/40 max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-300 shadow-official">
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-matte-black/90 backdrop-blur-md transition-opacity duration-300 ${
+            isExiting ? 'opacity-0' : 'opacity-100'
+          }`}
+          onClick={handleClose}
+        >
+          <div
+            className={`relative frosted-glass-light rounded-lg border border-metallic-gold/30 shadow-official max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 profile-overlay-glow transition-all duration-300 ${
+              isExiting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                e.preventDefault();
+                handleClose();
+              }
+            }}
+            tabIndex={-1}
+          >
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 z-10 p-2 rounded-md bg-neon-red/15 hover:bg-neon-red/25 transition-colors focus:outline-none focus:ring-2 focus:ring-metallic-gold"
+              className="absolute top-4 right-4 p-2 rounded-md bg-neon-red/20 hover:bg-neon-red/30 transition-colors focus:outline-none focus:ring-2 focus:ring-neon-red icon-live"
               aria-label="Close profile"
             >
-              <X className="w-5 h-5 text-official-primary" />
+              <X className="w-5 h-5 text-white" />
             </button>
 
-            <div className="p-6 md:p-10">
-              <div className="flex flex-col md:flex-row gap-8 items-start">
-                {/* Photo */}
-                <div className="relative animate-in slide-in-from-bottom-4 duration-500">
-                  <div className="absolute inset-0 bg-metallic-gold/25 rounded-lg blur-xl" />
-                  <img
-                    src="/assets/generated/profile-prabal-pratap.dim_1024x1024.png"
-                    alt="Prabal Pratap - Branch Post Master"
-                    className="relative w-44 h-44 md:w-56 md:h-56 rounded-lg object-cover border-2 border-metallic-gold/50 shadow-official-sm"
-                  />
-                </div>
-
-                {/* Bio with typewriter effect */}
-                <div className="flex-1 space-y-4">
-                  <TypewriterNeon
-                    lines={bioData}
-                    typingSpeed={30}
-                    lineDelay={200}
-                  />
-                </div>
-              </div>
-
-              {/* Additional Info */}
-              <div className="mt-8 pt-6 border-t official-divider">
-                <p className="body-base text-official-primary leading-relaxed">
-                  With over 15 years of dedicated service to India Post, Prabal Pratap has been instrumental 
-                  in modernizing postal services in the Begumganj region. His commitment to customer satisfaction 
-                  and financial inclusion has helped thousands of families secure their future through various 
-                  postal schemes and services.
+            {/* Profile Header */}
+            <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
+              <img
+                src="/assets/generated/profile-prabal-pratap.dim_1024x1024.png"
+                alt="Prabal Pratap"
+                className="w-32 h-32 rounded-full object-cover border-4 border-metallic-gold/30 shadow-official"
+              />
+              <div className="text-center md:text-left">
+                <h2 className="bpm-profile-name text-3xl mb-2">
+                  𝐏𝐫𝐚𝐛𝐚𝐥 𝐏𝐫𝐚𝐭𝐚𝐩
+                </h2>
+                <p className="body-base text-metallic-gold">
+                  Branch Postmaster & IPPB Expert
                 </p>
               </div>
+            </div>
+
+            {/* Biodata with Typewriter Effect */}
+            <div className="mb-6">
+              <h3 className="heading-md text-metallic-gold mb-4">Profile Details</h3>
+              <TypewriterNeon lines={bioLines} speed={30} />
+            </div>
+
+            {/* Additional Info */}
+            <div className="border-t official-divider pt-6">
+              <p className="body-base animated-blue-yellow-black-text leading-relaxed mb-4">
+                As an IPPB (India Post Payments Bank) expert with years of dedicated service, I specialize in making complex insurance products simple and accessible for everyone. My approach is friendly and patient—I take the time to explain every detail so you can make informed financial decisions with confidence.
+              </p>
+              <p className="body-base animated-blue-yellow-black-text leading-relaxed">
+                Whether you need help with IPPB accounts, insurance policies, postal savings schemes, or any financial service, I'm here to guide you every step of the way. Our branch at Mundla Chawal serves as your trusted partner for all postal and banking needs, combining traditional values with modern digital solutions.
+              </p>
             </div>
           </div>
         </div>
       )}
+
+      {/* Rating Dialog */}
+      <ProfileRatingDialog
+        isOpen={showRatingDialog}
+        onClose={() => setShowRatingDialog(false)}
+        username={username}
+      />
     </>
   );
 }

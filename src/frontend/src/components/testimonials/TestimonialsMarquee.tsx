@@ -1,15 +1,23 @@
 import { testimonials } from '@/data/testimonials';
+import { Star } from 'lucide-react';
 
+/**
+ * Infinite scrolling marquee of customer testimonials with continuous horizontal animation.
+ * Displays testimonials in a seamless loop with official styling and red text.
+ */
 export function TestimonialsMarquee() {
   // Duplicate testimonials for seamless loop
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="relative z-10 py-12 md:py-16 overflow-hidden">
+    <section className="w-full py-12 md:py-16 overflow-hidden">
       <div className="container mx-auto px-4 mb-8">
-        <h2 className="heading-lg text-center tracking-tight">
-          What Our Customers Say
+        <h2 className="heading-lg text-center text-metallic-gold">
+          Customer Testimonials
         </h2>
+        <p className="body-base text-center details-text-red mt-2">
+          Hear from our satisfied customers
+        </p>
       </div>
 
       <div className="relative">
@@ -18,26 +26,38 @@ export function TestimonialsMarquee() {
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-matte-black to-transparent z-10" />
 
         {/* Marquee Container */}
-        <div className="flex gap-6 marquee">
+        <div className="flex testimonials-marquee" style={{ width: 'max-content' }}>
           {duplicatedTestimonials.map((testimonial, index) => (
             <div
-              key={`${testimonial.id}-${index}`}
-              className="flex-shrink-0 w-80 frosted-glass-light rounded-lg p-5 border border-metallic-gold/25"
+              key={`${testimonial.name}-${index}`}
+              className="flex-shrink-0 w-80 mx-4"
             >
-              <div className="flex items-start gap-3 mb-3">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-metallic-gold/25 to-neon-red/25 flex items-center justify-center flex-shrink-0 border border-metallic-gold/30">
-                  <span className="text-lg font-bold text-metallic-gold">
-                    {testimonial.name.charAt(0)}
-                  </span>
+              <div className="official-panel p-6 h-full">
+                {/* Stars - Fixed 5 stars for all testimonials */}
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-metallic-gold text-metallic-gold"
+                    />
+                  ))}
                 </div>
-                <div>
-                  <h4 className="body-base font-semibold text-official-primary">{testimonial.name}</h4>
-                  <p className="body-sm text-official-secondary">{testimonial.location}</p>
+
+                {/* Message */}
+                <p className="body-sm details-text-red mb-4 leading-relaxed">
+                  "{testimonial.message}"
+                </p>
+
+                {/* Author */}
+                <div className="border-t official-divider pt-3">
+                  <p className="body-sm font-semibold details-text-red">
+                    {testimonial.name}
+                  </p>
+                  <p className="body-sm details-text-red opacity-80">
+                    {testimonial.location}
+                  </p>
                 </div>
               </div>
-              <p className="body-sm text-official-primary leading-relaxed">
-                "{testimonial.message}"
-              </p>
             </div>
           ))}
         </div>

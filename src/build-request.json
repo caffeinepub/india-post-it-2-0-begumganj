@@ -1,87 +1,126 @@
 {
   "kind": "build_request",
-  "title": "Restore UI to the previous version (rollback recent blinking/color changes)",
-  "projectName": "IPPB Interactive Portal",
+  "title": "Enhance Bio/Profile Animations, Update Bio Contact & Content, Replace Pink Text Colors, and Add Rating Prompt on Close",
+  "projectName": "India Post Portal",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
+      "text": "Improve the Branch Postmaster bio/profile overlay animation quality and overall feel (open/close transitions, overlay glow, and typewriter reveal) to look smoother and more premium without removing existing interactions (tap/close sounds, click-to-open, backdrop close).",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
+          "bio profile animation ko or better karo"
         ]
       },
       "acceptanceCriteria": [
-        "No icons blink anywhere in the UI (including scheme cards, header IT 2.0 icon, gallery icon, and floating buttons).",
-        "`icon-live-blink-2s` is no longer applied in React components, and the animation does not run in the browser."
+        "Opening the profile overlay animates in smoothly (no abrupt appearance) and closing animates out smoothly.",
+        "Existing behaviors still work: click card opens; close button, backdrop click, and keyboard interactions still close; click/close sounds still play.",
+        "Typewriter text animation remains readable and does not jitter or reflow excessively while typing."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
+      "text": "Update the bio/profile contact number shown inside the profile details to use exactly: 7771991108 (including removing any masked placeholder like '+91-XXXX-XXXXXX').",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
+          "-Contact no.-7771991108' karo"
         ]
       },
       "acceptanceCriteria": [
-        "Section titles and modal titles do not blink.",
-        "Headings are not forced to the special dark-red heading color introduced by `heading-primary-live` and instead follow the base heading styles."
+        "The profile details (typewriter biodata) displays '7771991108' as the contact number.",
+        "No masked placeholder contact number remains in the profile overlay content."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
+      "text": "Rewrite and expand the bio/profile text content to better present the person as an IPPB expert and someone who explains insurance clearly, with a friendly and helpful tone (English text). This includes updating both the typed biodata lines and the additional descriptive paragraph in the profile overlay.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
+          "karo bio deta better karo ippb expert insorance explain better good person friendly etc."
         ]
       },
       "acceptanceCriteria": [
-        "Close (X) icons in all dialogs/modals/lightboxes do not blink.",
-        "Close (X) icons are not forced to the special red color introduced by `close-x-live-blink-3s`."
+        "Profile overlay text is in English and clearly communicates: IPPB expertise, ability to explain insurance, and a friendly/helpful personality.",
+        "Both the typewriter lines and the longer paragraph are updated accordingly (not only one section)."
       ]
     },
     {
       "id": "REQ-4",
-      "text": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
+      "text": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink). Apply this to existing pink text styles used across the app (e.g., pink bolt/result text, pink/blue gradient text, and IPPB pink/gold labels) while keeping readability on the dark background.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "𝐬𝐢𝐭𝐞 𝐤𝐨 𝐩𝐡𝐞𝐥𝐞 𝐣𝐞𝐬𝐚 𝐤𝐚𝐫𝐨 𝐣𝐞𝐬𝐞 𝐩𝐡𝐞𝐥𝐞 𝐭𝐡𝐢"
+          "All text jo pink hai inhe blue,yellow,black live animation mai karo"
         ]
       },
       "acceptanceCriteria": [
-        "There are no remaining references to the rollbacked blink/color utilities in `frontend/src` (including CSS and component classNames).",
-        "The UI has no new blink-based effects compared to the previous version and behaves normally under `prefers-reduced-motion` (no special-casing needed for removed effects)."
+        "No prominent text in the UI appears pink anymore (including gradient text that previously contained pink).",
+        "Formerly-pink highlighted text uses an animated blue/yellow/black treatment and remains readable against the dark theme.",
+        "IPPB highlight labels that used the pink/gold style are updated to the new non-pink animated style."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "When the user closes the bio/profile overlay, show a rating prompt (e.g., 1–5 stars) and capture the rating so it is visible to the user afterward (e.g., show the submitted rating confirmation and the last submitted rating). Persist the submitted rating in the backend so it can be retrieved later.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "close karne per raiting aane chaiye jo mujhe pata lag jana chaiye"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Closing the profile overlay triggers a rating prompt UI.",
+        "User can submit a rating (1–5).",
+        "After submission, the app clearly shows the submitted rating to the user (e.g., 'Thanks — you rated 4/5' and/or 'Last rating: 4/5').",
+        "Rating is persisted via backend calls and can be fetched again after a page refresh."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Extend the Motoko backend (single main actor) with stable storage and methods to record submitted profile ratings and to fetch the most recent rating and basic summary (at minimum: last rating value and timestamp).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "raiting ... mujhe pata lag jana chaiye"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend provides a method to submit a rating (1–5) and stores it in stable state.",
+        "Backend provides a method to fetch the last submitted rating (and timestamp).",
+        "Invalid ratings outside 1–5 are rejected with a clear error."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under `frontend/src/components/ui` (read-only UI components must be composed, not modified).",
-    "Do not edit immutable hook/bootstrap files: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`.",
-    "Backend must remain single-actor; do not add additional canisters/services."
+    "Do not edit files under frontend/src/components/ui (read-only shadcn components); compose them instead.",
+    "Do not edit immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
+    "Backend must remain a single Motoko actor in backend/main.mo; add migration.mo only if needed for stable state upgrades."
   ],
   "nonGoals": [
-    "Adding new animations or additional visual effects.",
-    "Introducing new features or changing site content/structure beyond rolling back the recent blinking/color-related changes.",
-    "Backend changes (no Motoko logic changes required for this rollback)."
+    "Do not add third-party authentication providers (only Internet Identity is supported).",
+    "Do not add real-time/WebSocket features.",
+    "Do not add external databases or non-Motoko backend services."
   ],
   "imageRequirements": {
     "required": [],

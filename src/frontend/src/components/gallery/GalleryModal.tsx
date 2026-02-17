@@ -105,7 +105,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
         >
           <DialogHeader className="px-6 pt-6 pb-4 border-b border-[oklch(var(--metallic-gold)/0.25)]">
             <DialogTitle className="heading-md">Gallery</DialogTitle>
-            <p id="gallery-description" className="body-sm text-official-secondary mt-2">
+            <p id="gallery-description" className="body-sm details-text-red mt-2">
               Browse our collection of moments from India Post IT 2.0
             </p>
           </DialogHeader>
@@ -118,7 +118,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
                   className="group relative aspect-video bg-[oklch(0.12_0_0)] rounded-lg overflow-hidden border border-[oklch(var(--metallic-gold)/0.2)] hover:border-[oklch(var(--metallic-gold)/0.5)] transition-all duration-300"
                 >
                   {imageErrors.has(index) ? (
-                    <div className="absolute inset-0 flex items-center justify-center text-official-secondary body-sm p-4 text-center">
+                    <div className="absolute inset-0 flex items-center justify-center details-text-red body-sm p-4 text-center">
                       Image unavailable
                     </div>
                   ) : (
@@ -155,10 +155,10 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
 
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 p-2 rounded-lg bg-[oklch(0.1_0_0/0.8)] backdrop-blur-sm border border-[oklch(var(--metallic-gold)/0.3)] hover:bg-[oklch(0.15_0_0/0.9)] transition-colors focus:outline-none focus:ring-2 focus:ring-[oklch(var(--neon-red))]"
+            className="absolute top-4 right-4 p-2 rounded-lg gallery-close-button border-0 transition-all focus:outline-none focus:ring-2 focus:ring-[oklch(var(--neon-red))] focus:ring-offset-2 focus:ring-offset-background"
             aria-label="Close gallery"
           >
-            <X className="w-5 h-5 text-official-primary" />
+            <X className="w-5 h-5 text-white relative z-10" />
           </button>
         </DialogContent>
       </Dialog>

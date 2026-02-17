@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react';
 import type { SchemeData } from '@/data/schemes';
 import { useClickSound } from '@/hooks/useClickSound';
 
@@ -9,51 +10,58 @@ interface SchemeCardProps {
 export function SchemeCard({ scheme, onClick }: SchemeCardProps) {
   const { playTap } = useClickSound();
 
-  const handleActivation = () => {
+  const handleClick = () => {
     playTap();
     onClick();
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
-    <button
-      onClick={handleActivation}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleActivation();
-        }
-      }}
-      className="group relative frosted-glass-light rounded-lg p-6 border border-metallic-gold/25 hover:border-metallic-gold/50 transition-all duration-200 hover:shadow-official focus:outline-none focus:ring-2 focus:ring-metallic-gold focus:ring-offset-2 focus:ring-offset-matte-black"
-      aria-label={`Open ${scheme.label} details`}
+    <div
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-matte-black/60 to-matte-black/40 backdrop-blur-md border border-icon-accent-red/30 hover:border-icon-accent-blue/50 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-icon-accent-red focus:ring-offset-2 focus:ring-offset-matte-black"
+      aria-label={`View details for ${scheme.label}`}
     >
-      {/* Icon Container */}
-      <div className="relative mb-5 aspect-square w-full max-w-[160px] mx-auto">
-        <div className="absolute inset-0 bg-gradient-to-br from-metallic-gold/10 to-neon-red/10 rounded-lg blur-md group-hover:blur-lg transition-all duration-200" />
-        <img
-          src={scheme.iconPath}
-          alt={scheme.label}
-          className="relative w-full h-full object-contain drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-200"
-        />
-      </div>
+      {/* Icon Backplate with Red/Blue Gradient */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-icon-accent-red/10 to-icon-accent-blue/10 rounded-bl-full opacity-50 group-hover:opacity-70 transition-opacity duration-300" />
 
-      {/* Label */}
-      <h3 className="heading-md text-metallic-gold group-hover:text-neon-red transition-colors duration-200 mb-2">
-        {scheme.shortLabel}
-      </h3>
-      
-      {/* Description */}
-      <p className="body-sm text-official-secondary group-hover:text-official-primary transition-colors duration-200">
-        {scheme.description}
-      </p>
+      <div className="relative p-6 flex flex-col h-full">
+        {/* Icon with continuous animation */}
+        <div className="mb-4">
+          <img
+            src={scheme.iconPath}
+            alt={scheme.label}
+            className="w-16 h-16 object-contain drop-shadow-lg icon-live"
+          />
+        </div>
 
-      {/* Hover Indicator */}
-      <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <div className="w-7 h-7 rounded-full bg-metallic-gold/15 flex items-center justify-center border border-metallic-gold/30">
-          <svg className="w-3.5 h-3.5 text-metallic-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+        {/* Label */}
+        <h3 className="heading-sm mb-2 text-white group-hover:text-icon-accent-red transition-colors duration-200">
+          {scheme.shortLabel}
+        </h3>
+
+        {/* Description */}
+        <p className="body-sm details-text-red flex-1 mb-4">
+          {scheme.description}
+        </p>
+
+        {/* Hover Indicator */}
+        <div className="flex items-center gap-2 text-icon-accent-blue group-hover:text-icon-accent-red transition-colors duration-200">
+          <span className="body-sm font-semibold">Learn More</span>
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-icon-accent-red/20 to-icon-accent-blue/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+            <ArrowRight className="w-4 h-4 icon-live" />
+          </div>
         </div>
       </div>
-    </button>
+    </div>
   );
 }

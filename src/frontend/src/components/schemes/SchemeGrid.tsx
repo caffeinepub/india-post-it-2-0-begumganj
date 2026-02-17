@@ -1,8 +1,8 @@
-import { getAllSchemes } from '@/data/schemes';
+import { getAllSchemes } from '../../data/schemes';
 import { SchemeCard } from './SchemeCard';
 import { GalleryCard } from '../gallery/GalleryCard';
 import { IppbGridCard } from '../ippb/IppbGridCard';
-import type { SchemeId } from '@/data/schemes';
+import type { SchemeId } from '../../data/schemes';
 
 interface SchemeGridProps {
   onSchemeClick: (schemeId: SchemeId) => void;
@@ -31,7 +31,7 @@ export function SchemeGrid({ onSchemeClick, onGalleryClick }: SchemeGridProps) {
           {/* Gallery Card */}
           <GalleryCard onClick={onGalleryClick} />
           
-          {/* IPPB Card - 8th card in grid */}
+          {/* IPPB Card - 8th card in grid, manages its own modal state */}
           <IppbGridCard />
         </div>
       </div>

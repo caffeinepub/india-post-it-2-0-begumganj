@@ -58,13 +58,13 @@ export function It20Modal({ isOpen, onClose }: It20ModalProps) {
         className="relative frosted-glass-light rounded-lg border border-metallic-gold/30 shadow-official max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Close Button with continuous animation */}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 p-2 rounded-md bg-matte-black/30 hover:bg-matte-black/50 transition-colors focus:outline-none focus:ring-2 focus:ring-metallic-gold"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5 text-official-primary" />
+          <X className="w-5 h-5 text-official-primary icon-live" />
         </button>
 
         {/* Content */}
@@ -73,7 +73,7 @@ export function It20Modal({ isOpen, onClose }: It20ModalProps) {
             India Post IT 2.0
           </h2>
           
-          <div className="space-y-4 body-base text-official-primary">
+          <div className="space-y-4 body-base details-text-red">
             <p>
               India Post IT 2.0 represents a transformative digital initiative aimed at modernizing postal services across the nation. This comprehensive program integrates cutting-edge technology to enhance customer experience and operational efficiency.
             </p>
@@ -84,7 +84,7 @@ export function It20Modal({ isOpen, onClose }: It20ModalProps) {
 
             <div className="mt-6 pt-4 border-t official-divider">
               <h3 className="heading-sm text-neon-red mb-3">Key Features:</h3>
-              <ul className="space-y-2 body-sm text-official-secondary list-disc list-inside">
+              <ul className="space-y-2 body-sm details-text-red list-disc list-inside">
                 <li>Real-time tracking and monitoring</li>
                 <li>Digital payment integration</li>
                 <li>Enhanced security protocols</li>

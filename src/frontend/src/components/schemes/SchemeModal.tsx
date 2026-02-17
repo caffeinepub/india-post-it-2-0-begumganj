@@ -20,6 +20,9 @@ export function SchemeModal({ scheme, isOpen, onClose }: SchemeModalProps) {
 
   if (!scheme) return null;
 
+  // Check if this is an RBP scheme (SB, RD, TD, SSA, MIS)
+  const isRbpScheme = ['SB', 'RD', 'TD', 'SSA', 'MIS'].includes(scheme.id);
+
   return (
     <Dialog open={isOpen} onOpenChange={(open) => {
       if (!open) {
@@ -28,36 +31,35 @@ export function SchemeModal({ scheme, isOpen, onClose }: SchemeModalProps) {
       }
     }}>
       <DialogContent 
-        className="frosted-glass border-metallic-gold/30 max-w-5xl max-h-[90vh] overflow-hidden p-0"
+        className="frosted-glass border-icon-accent-red/30 max-w-5xl max-h-[90vh] overflow-hidden p-0"
         aria-describedby="scheme-description"
       >
-        <DialogHeader className="px-6 pt-6 pb-4 border-b border-metallic-gold/25">
+        <DialogHeader className="px-6 pt-6 pb-4 border-b border-icon-accent-red/25">
           <div className="flex items-start gap-4">
             <img
               src={scheme.iconPath}
               alt={scheme.label}
-              className="w-16 h-16 md:w-20 md:h-20 object-contain flex-shrink-0"
+              className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg icon-live"
             />
             <div className="flex-1">
-              <DialogTitle className="heading-md mb-2">{scheme.label}</DialogTitle>
-              <p id="scheme-description" className="body-sm text-official-secondary">
-                {scheme.description}
-              </p>
+              <DialogTitle className={`heading-lg mb-2 ${isRbpScheme ? 'rbp-scheme-title' : 'text-metallic-gold'}`}>
+                {scheme.label}
+              </DialogTitle>
+              <p className="body-base details-text-red">{scheme.description}</p>
             </div>
+            <button
+              onClick={handleClose}
+              className="p-2 rounded-md bg-neon-red/15 hover:bg-neon-red/25 transition-colors focus:outline-none focus:ring-2 focus:ring-icon-accent-red"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5 text-official-primary icon-live" />
+            </button>
           </div>
         </DialogHeader>
 
-        <div className="overflow-y-auto px-6 py-6" style={{ maxHeight: 'calc(90vh - 180px)' }}>
+        <div className="px-6 py-6 overflow-y-auto max-h-[calc(90vh-140px)]" id="scheme-description">
           <SchemeTabs scheme={scheme} />
         </div>
-
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 p-2 rounded-lg bg-matte-black/30 hover:bg-matte-black/50 transition-colors focus:outline-none focus:ring-2 focus:ring-metallic-gold"
-          aria-label="Close modal"
-        >
-          <X className="w-5 h-5 text-official-primary" />
-        </button>
       </DialogContent>
     </Dialog>
   );

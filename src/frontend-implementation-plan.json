@@ -1,180 +1,114 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Rollback blink/color utility classes to restore previous UI styling",
+  "title": "Premium bio overlay animation + content refresh, non-pink animated text theme, and profile rating prompt",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Remove the live blink icon animation by eliminating `icon-live-blink-2s` usage and disabling its CSS animation.",
+      "summary": "Refine the Branch Postmaster profile overlay to feel smoother and more premium (open/close transitions, glow, and typewriter reveal) while preserving all existing interactions and sounds.",
       "acceptanceCriteria": [
-        "No icons blink anywhere in the UI (including scheme cards, header IT 2.0 icon, gallery icon, and floating buttons).",
-        "`icon-live-blink-2s` is no longer applied in React components, and the animation does not run in the browser."
+        "Opening the profile overlay animates in smoothly (no abrupt appearance) and closing animates out smoothly.",
+        "Existing behaviors still work: click card opens; close button, backdrop click, and keyboard interactions still close; click/close sounds still play.",
+        "Typewriter text animation remains readable and does not jitter or reflow excessively while typing."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/components/profile/BpmProfileCard.tsx",
+          "operation": "modify",
+          "description": "Implement premium open/close transitions for the overlay (mount/unmount with exit animation), enhance overlay glow usage, and ensure keyboard close behavior (ESC) remains supported while keeping click-to-open, backdrop close, and tap/close sounds intact."
+        },
+        {
+          "path": "frontend/src/components/profile/TypewriterNeon.tsx",
+          "operation": "modify",
+          "description": "Stabilize the typewriter rendering to reduce layout jitter (consistent line containers/cursor placement) and keep the typing reveal smooth and readable without removing the existing typewriter interaction."
+        },
+        {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Remove (or fully disable) the `.icon-live-blink-2s` utility and its `@keyframes iconBlink2s` so no icon blinking animation can run."
-        },
-        {
-          "path": "frontend/src/components/header/FrostedHeader.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from the IT 2.0 header icon image so it no longer blinks."
-        },
-        {
-          "path": "frontend/src/components/schemes/SchemeCard.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from scheme card icons and the hover-indicator arrow so they no longer blink."
-        },
-        {
-          "path": "frontend/src/components/gallery/GalleryCard.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from the gallery card icon so it no longer blinks."
-        },
-        {
-          "path": "frontend/src/components/gallery/GalleryModal.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from the gallery modal download icon overlay so it no longer blinks."
-        },
-        {
-          "path": "frontend/src/components/gallery/GalleryLightbox.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from lightbox controls (download/prev/next icons) so they no longer blink."
-        },
-        {
-          "path": "frontend/src/components/support/CallFloatingButton.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from the phone icon so the floating call button icon no longer blinks."
-        },
-        {
-          "path": "frontend/src/components/support/WhatsAppFloatingButton.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from the WhatsApp icon so the floating WhatsApp button icon no longer blinks."
-        },
-        {
-          "path": "frontend/src/components/ippb/IppbGridCard.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from the IPPB card logo and hover-indicator arrow so they no longer blink."
-        },
-        {
-          "path": "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from the IPPB overlay header logo and category icons so they no longer blink."
-        },
-        {
-          "path": "frontend/src/components/prompt/PromptCopySection.tsx",
-          "operation": "modify",
-          "description": "Remove `icon-live-blink-2s` from copy/check icons so they no longer blink."
+          "description": "Add/adjust CSS utility animations for the profile overlay (premium enter/exit easing, improved glow animation) and typewriter cursor visuals to support smoother perceived motion."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Restore headings by removing `heading-primary-live` usage and disabling its forced dark-red/blink styling.",
+      "summary": "Update the profile overlay contact number to display exactly 7771991108 (no masking).",
       "acceptanceCriteria": [
-        "Section titles and modal titles do not blink.",
-        "Headings are not forced to the special dark-red heading color introduced by `heading-primary-live` and instead follow the base heading styles."
+        "The profile details (typewriter biodata) displays '7771991108' as the contact number.",
+        "No masked placeholder contact number remains in the profile overlay content."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/components/profile/BpmProfileCard.tsx",
           "operation": "modify",
-          "description": "Remove (or fully disable) the `.heading-primary-live` utility and its `@keyframes headingBlink2s` so headings are not forced dark-red and cannot blink."
-        },
-        {
-          "path": "frontend/src/components/header/It20Modal.tsx",
-          "operation": "modify",
-          "description": "Remove `heading-primary-live` from the IT 2.0 modal title so it uses base heading styles (no blink/no forced dark red)."
-        },
-        {
-          "path": "frontend/src/components/schemes/SchemeModal.tsx",
-          "operation": "modify",
-          "description": "Remove `heading-primary-live` from the scheme modal title so it uses base heading styles (no blink/no forced dark red)."
-        },
-        {
-          "path": "frontend/src/components/gallery/GalleryModal.tsx",
-          "operation": "modify",
-          "description": "Remove `heading-primary-live` from the gallery modal title so it uses base heading styles (no blink/no forced dark red)."
-        },
-        {
-          "path": "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "operation": "modify",
-          "description": "Remove `heading-primary-live` from the IPPB overlay title so it uses base heading styles (no blink/no forced dark red)."
-        },
-        {
-          "path": "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
-          "operation": "modify",
-          "description": "Remove `heading-primary-live` from the testimonials section heading so it uses base heading styles (no blink/no forced dark red)."
-        },
-        {
-          "path": "frontend/src/components/prompt/PromptCopySection.tsx",
-          "operation": "modify",
-          "description": "Remove `heading-primary-live` from the prompt section heading so it uses base heading styles (no blink/no forced dark red)."
+          "description": "Replace the contact number in the typed biodata lines with the exact value '7771991108' and ensure any previously-masked placeholder is removed from the overlay content."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Restore modal/overlay close (X) buttons by removing `close-x-live-blink-3s` usage and disabling its forced red/blink styling.",
+      "summary": "Rewrite and expand the profile overlay text in English to better highlight IPPB expertise, clear insurance explanations, and a friendly/helpful tone (update both typed lines and the longer paragraph).",
       "acceptanceCriteria": [
-        "Close (X) icons in all dialogs/modals/lightboxes do not blink.",
-        "Close (X) icons are not forced to the special red color introduced by `close-x-live-blink-3s`."
+        "Profile overlay text is in English and clearly communicates: IPPB expertise, ability to explain insurance, and a friendly/helpful personality.",
+        "Both the typewriter lines and the longer paragraph are updated accordingly (not only one section)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Remove (or fully disable) the `.close-x-live-blink-3s` utility and its `@keyframes closeBlink3s` so close icons are not forced red and cannot blink."
-        },
-        {
-          "path": "frontend/src/components/header/It20Modal.tsx",
-          "operation": "modify",
-          "description": "Remove `close-x-live-blink-3s` from the IT 2.0 modal close (X) icon so it uses the prior/base styling."
-        },
-        {
-          "path": "frontend/src/components/schemes/SchemeModal.tsx",
-          "operation": "modify",
-          "description": "Remove `close-x-live-blink-3s` from the scheme modal close (X) icon so it uses the prior/base styling."
-        },
-        {
-          "path": "frontend/src/components/gallery/GalleryModal.tsx",
-          "operation": "modify",
-          "description": "Remove `close-x-live-blink-3s` from the gallery modal close (X) icon so it uses the prior/base styling."
-        },
-        {
-          "path": "frontend/src/components/gallery/GalleryLightbox.tsx",
-          "operation": "modify",
-          "description": "Remove `close-x-live-blink-3s` from the lightbox close (X) icon so it uses the prior/base styling."
-        },
-        {
           "path": "frontend/src/components/profile/BpmProfileCard.tsx",
           "operation": "modify",
-          "description": "Remove `close-x-live-blink-3s` from the BPM profile overlay close (X) icon so it uses the prior/base styling."
+          "description": "Rewrite the typewriter biodata lines and the additional descriptive paragraph to present the person as an IPPB expert who explains insurance clearly with a friendly, helpful tone (English)."
         }
       ]
     },
     {
       "id": "REQ-4",
-      "summary": "Audit and revert any remaining blink/color-update helper utilities and references so the UI matches the pre-change version.",
+      "summary": "Remove pink text/gradients across the UI and replace them with a readable animated blue/yellow/black treatment on the dark theme, including IPPB highlight labels and formerly pink result/gradient text styles.",
       "acceptanceCriteria": [
-        "There are no remaining references to the rollbacked blink/color utilities in `frontend/src` (including CSS and component classNames).",
-        "The UI has no new blink-based effects compared to the previous version and behaves normally under `prefers-reduced-motion` (no special-casing needed for removed effects)."
+        "No prominent text in the UI appears pink anymore (including gradient text that previously contained pink).",
+        "Formerly-pink highlighted text uses an animated blue/yellow/black treatment and remains readable against the dark theme.",
+        "IPPB highlight labels that used the pink/gold style are updated to the new non-pink animated style."
       ],
       "file_operations": [
         {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Remove any leftover blink/color-update-only helpers and cleanup the `prefers-reduced-motion` block so it no longer references removed blink utilities (`icon-live-blink-2s`, `heading-primary-live`, `close-x-live-blink-3s`)."
+          "description": "Replace pink-related CSS variables and utilities (e.g., pink bolt/result text, pink/blue animated gradient text, RBP title gradient, gallery close gradient, and IPPB pink/gold label style) with a live animated blue/yellow/black treatment while preserving readability on the dark background."
         },
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/components/ippb/IppbOverlayDialog.tsx",
           "operation": "modify",
-          "description": "Run a local audit of composed components used by `App` (header, scheme grid/modals, gallery, profile overlay, floating buttons) and ensure no blink/color rollback classes remain referenced indirectly or via props/className composition."
+          "description": "Update IPPB highlight label usage to the new non-pink animated text utility class so the in-card emphasized labels no longer render with any pink styling."
         },
         {
-          "path": "frontend/src/components",
+          "path": "frontend/src/components/calculator/LiveCalculator.tsx",
           "operation": "modify",
-          "description": "Perform a project-wide audit within `frontend/src/components` to remove any remaining usages of rollbacked blink/color utilities in className strings and ensure the visual behavior matches the pre-change version without introducing new effects."
+          "description": "Ensure the non-RBP calculator result text no longer uses any pink styling by switching to the new animated blue/yellow/black treatment (or updated utility class) while keeping the result prominent and readable."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Show a 1–5 star rating prompt when the profile overlay is closed, submit the rating via backend calls, and display the submitted/last rating to the user (persisted across refresh).",
+      "acceptanceCriteria": [
+        "Closing the profile overlay triggers a rating prompt UI.",
+        "User can submit a rating (1–5).",
+        "After submission, the app clearly shows the submitted rating to the user (e.g., 'Thanks — you rated 4/5' and/or 'Last rating: 4/5').",
+        "Rating is persisted via backend calls and can be fetched again after a page refresh."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useProfileRating.ts",
+          "operation": "create",
+          "description": "Create a React hook that uses the existing actor (via useActor) and React Query to fetch the last rating for the profile and submit a new rating (1–5), including basic loading/error state handling."
+        },
+        {
+          "path": "frontend/src/components/profile/ProfileRatingDialog.tsx",
+          "operation": "create",
+          "description": "Create a rating prompt dialog (1–5 stars) that appears after closing the profile overlay, submits the rating via the hook, and shows a clear confirmation plus the last submitted rating. Verify the shadcn-ui component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/profile/BpmProfileCard.tsx",
+          "operation": "modify",
+          "description": "Wire the rating prompt to trigger specifically on overlay close (close button, backdrop click, and keyboard dismiss). Ensure the close sound still plays, show the rating dialog after the overlay exit animation, and display the last submitted rating to the user on the card and/or in the overlay area."
         }
       ]
     }

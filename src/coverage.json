@@ -1,125 +1,114 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-17T04:09:47.941Z",
+  "generatedAt": "2026-02-17T10:56:30.265Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 4,
+    "total": 6,
+    "implemented": 5,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
+        "summary": "Improve the Branch Postmaster bio/profile overlay animation quality and overall feel (open/close transitions, overlay glow, and typewriter reveal) to look smoother and more premium without removing existing interactions (tap/close sounds, click-to-open, backdrop close).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/header/FrostedHeader.tsx",
-          "frontend/src/components/schemes/SchemeCard.tsx",
-          "frontend/src/components/gallery/GalleryCard.tsx",
-          "frontend/src/components/gallery/GalleryModal.tsx",
-          "frontend/src/components/gallery/GalleryLightbox.tsx",
-          "frontend/src/components/support/CallFloatingButton.tsx",
-          "frontend/src/components/support/WhatsAppFloatingButton.tsx",
-          "frontend/src/components/ippb/IppbGridCard.tsx",
-          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "frontend/src/components/prompt/PromptCopySection.tsx"
+          "frontend/src/components/profile/BpmProfileCard.tsx",
+          "frontend/src/components/profile/TypewriterNeon.tsx",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/header/FrostedHeader.tsx",
-          "frontend/src/components/schemes/SchemeCard.tsx",
-          "frontend/src/components/gallery/GalleryCard.tsx",
-          "frontend/src/components/gallery/GalleryModal.tsx",
-          "frontend/src/components/gallery/GalleryLightbox.tsx",
-          "frontend/src/components/support/CallFloatingButton.tsx",
-          "frontend/src/components/support/WhatsAppFloatingButton.tsx",
-          "frontend/src/components/ippb/IppbGridCard.tsx",
-          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "frontend/src/components/prompt/PromptCopySection.tsx"
+          "frontend/src/components/profile/BpmProfileCard.tsx",
+          "frontend/src/components/profile/TypewriterNeon.tsx",
+          "frontend/src/index.css"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
+        "summary": "Update the bio/profile contact number shown inside the profile details to use exactly: 7771991108 (including removing any masked placeholder like '+91-XXXX-XXXXXX').",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/header/It20Modal.tsx",
-          "frontend/src/components/schemes/SchemeModal.tsx",
-          "frontend/src/components/gallery/GalleryModal.tsx",
-          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
-          "frontend/src/components/prompt/PromptCopySection.tsx"
+          "frontend/src/components/profile/BpmProfileCard.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/header/It20Modal.tsx",
-          "frontend/src/components/schemes/SchemeModal.tsx",
-          "frontend/src/components/gallery/GalleryModal.tsx",
-          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-          "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
-          "frontend/src/components/prompt/PromptCopySection.tsx"
+          "frontend/src/components/profile/BpmProfileCard.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
+        "summary": "Rewrite and expand the bio/profile text content to better present the person as an IPPB expert and someone who explains insurance clearly, with a friendly and helpful tone (English text). This includes updating both the typed biodata lines and the additional descriptive paragraph in the profile overlay.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/header/It20Modal.tsx",
-          "frontend/src/components/schemes/SchemeModal.tsx",
-          "frontend/src/components/gallery/GalleryModal.tsx",
-          "frontend/src/components/gallery/GalleryLightbox.tsx",
           "frontend/src/components/profile/BpmProfileCard.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/header/It20Modal.tsx",
-          "frontend/src/components/schemes/SchemeModal.tsx",
-          "frontend/src/components/gallery/GalleryModal.tsx",
-          "frontend/src/components/gallery/GalleryLightbox.tsx",
           "frontend/src/components/profile/BpmProfileCard.tsx"
         ]
       },
       {
         "id": "REQ-4",
-        "summary": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
+        "summary": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink). Apply this to existing pink text styles used across the app (e.g., pink bolt/result text, pink/blue gradient text, and IPPB pink/gold labels) while keeping readability on the dark background.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/index.css",
-          "frontend/src/App.tsx",
-          "frontend/src/components"
+          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "frontend/src/components/calculator/LiveCalculator.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css"
+          "frontend/src/index.css",
+          "frontend/src/components/ippb/IppbOverlayDialog.tsx",
+          "frontend/src/components/calculator/LiveCalculator.tsx"
         ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "When the user closes the bio/profile overlay, show a rating prompt (e.g., 1–5 stars) and capture the rating so it is visible to the user afterward (e.g., show the submitted rating confirmation and the last submitted rating). Persist the submitted rating in the backend so it can be retrieved later.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useProfileRating.ts",
+          "frontend/src/components/profile/ProfileRatingDialog.tsx",
+          "frontend/src/components/profile/BpmProfileCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useProfileRating.ts",
+          "frontend/src/components/profile/ProfileRatingDialog.tsx",
+          "frontend/src/components/profile/BpmProfileCard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Extend the Motoko backend (single main actor) with stable storage and methods to record submitted profile ratings and to fetch the most recent rating and basic summary (at minimum: last rating value and timestamp).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/gallery/GalleryCard.tsx",
-    "frontend/src/components/gallery/GalleryLightbox.tsx",
-    "frontend/src/components/gallery/GalleryModal.tsx",
-    "frontend/src/components/header/FrostedHeader.tsx",
-    "frontend/src/components/header/It20Modal.tsx",
-    "frontend/src/components/ippb/IppbGridCard.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/calculator/LiveCalculator.tsx",
     "frontend/src/components/ippb/IppbOverlayDialog.tsx",
     "frontend/src/components/profile/BpmProfileCard.tsx",
-    "frontend/src/components/prompt/PromptCopySection.tsx",
-    "frontend/src/components/schemes/SchemeCard.tsx",
-    "frontend/src/components/schemes/SchemeModal.tsx",
-    "frontend/src/components/support/CallFloatingButton.tsx",
-    "frontend/src/components/support/WhatsAppFloatingButton.tsx",
-    "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
+    "frontend/src/components/profile/ProfileRatingDialog.tsx",
+    "frontend/src/components/profile/TypewriterNeon.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useProfileRating.ts",
     "frontend/src/index.css",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

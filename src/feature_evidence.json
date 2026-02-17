@@ -2,19 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-the-recently-introduced-live-blink-icon-animation-across-the-site-by-eliminating-usage-of-the-icon-live-blink-2s-class-and-removing-or-disabling-the-corresponding-css-animation-so-icons-no-longer-blink",
-      "featureTitle": "Remove the recently introduced \"live blink\" icon animation across the site by eliminating usage of the `icon-live-blink-2s` class and removing (or disabling) the corresponding CSS animation so icons no longer blink.",
+      "featureId": "feature-improve-the-branch-postmaster-bio-profile-overlay-animation-quality-and-overall-feel-open-close-transitions-overlay-glow-and-typewriter-reveal-to-look-smoother-and-more-premium-without-removing-existing-interactions-tap-close-sounds-click-to-open-backdrop-close",
+      "featureTitle": "Improve the Branch Postmaster bio/profile overlay animation quality and overall feel (open/close transitions, overlay glow, and typewriter reveal) to look smoother and more premium without removing existing interactions (tap/close sounds, click-to-open, backdrop close).",
       "files": [
-        "frontend/src/components/gallery/GalleryCard.tsx",
-        "frontend/src/components/gallery/GalleryLightbox.tsx",
-        "frontend/src/components/gallery/GalleryModal.tsx",
-        "frontend/src/components/header/FrostedHeader.tsx",
-        "frontend/src/components/ippb/IppbGridCard.tsx",
-        "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-        "frontend/src/components/prompt/PromptCopySection.tsx",
-        "frontend/src/components/schemes/SchemeCard.tsx",
-        "frontend/src/components/support/CallFloatingButton.tsx",
-        "frontend/src/components/support/WhatsAppFloatingButton.tsx",
+        "frontend/src/components/profile/BpmProfileCard.tsx",
+        "frontend/src/components/profile/TypewriterNeon.tsx",
         "frontend/src/index.css"
       ],
       "components": [
@@ -22,7 +14,8 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-1"
@@ -30,23 +23,18 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-restore-headings-to-their-previous-styling-by-removing-the-heading-primary-live-class-wherever-applied-and-removing-or-disabling-its-css-so-headings-are-no-longer-forced-to-dark-red-and-do-not-blink",
-      "featureTitle": "Restore headings to their previous styling by removing the `heading-primary-live` class wherever applied and removing (or disabling) its CSS so headings are no longer forced to dark red and do not blink.",
+      "featureId": "feature-update-the-bio-profile-contact-number-shown-inside-the-profile-details-to-use-exactly-7771991108-including-removing-any-masked-placeholder-like-91-xxxx-xxxxxx",
+      "featureTitle": "Update the bio/profile contact number shown inside the profile details to use exactly: 7771991108 (including removing any masked placeholder like '+91-XXXX-XXXXXX').",
       "files": [
-        "frontend/src/components/gallery/GalleryModal.tsx",
-        "frontend/src/components/header/It20Modal.tsx",
-        "frontend/src/components/ippb/IppbOverlayDialog.tsx",
-        "frontend/src/components/prompt/PromptCopySection.tsx",
-        "frontend/src/components/schemes/SchemeModal.tsx",
-        "frontend/src/components/testimonials/TestimonialsMarquee.tsx",
-        "frontend/src/index.css"
+        "frontend/src/components/profile/BpmProfileCard.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-2"
@@ -54,22 +42,18 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-restore-modal-overlay-close-x-buttons-to-their-previous-appearance-by-removing-the-close-x-live-blink-3s-class-from-all-close-icons-and-removing-or-disabling-its-css-so-close-icons-are-not-forced-red-and-do-not-blink",
-      "featureTitle": "Restore modal/overlay close (X) buttons to their previous appearance by removing the `close-x-live-blink-3s` class from all close icons and removing (or disabling) its CSS so close icons are not forced red and do not blink.",
+      "featureId": "feature-rewrite-and-expand-the-bio-profile-text-content-to-better-present-the-person-as-an-ippb-expert-and-someone-who-explains-insurance-clearly-with-a-friendly-and-helpful-tone-english-text-this-includes-updating-both-the-typed-biodata-lines-and-the-additional-descriptive-paragraph-in-the-profile-overlay",
+      "featureTitle": "Rewrite and expand the bio/profile text content to better present the person as an IPPB expert and someone who explains insurance clearly, with a friendly and helpful tone (English text). This includes updating both the typed biodata lines and the additional descriptive paragraph in the profile overlay.",
       "files": [
-        "frontend/src/components/gallery/GalleryLightbox.tsx",
-        "frontend/src/components/gallery/GalleryModal.tsx",
-        "frontend/src/components/header/It20Modal.tsx",
-        "frontend/src/components/profile/BpmProfileCard.tsx",
-        "frontend/src/components/schemes/SchemeModal.tsx",
-        "frontend/src/index.css"
+        "frontend/src/components/profile/BpmProfileCard.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-3"
@@ -77,9 +61,11 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-audit-and-revert-any-other-visual-changes-introduced-specifically-to-support-the-new-blinking-color-update-set-including-any-helper-classes-added-only-for-that-update-so-the-site-matches-the-look-and-behavior-of-the-pre-change-version",
-      "featureTitle": "Audit and revert any other visual changes introduced specifically to support the new blinking/color update set (including any helper classes added only for that update) so the site matches the look and behavior of the pre-change version.",
+      "featureId": "feature-replace-all-ui-text-that-is-currently-styled-as-pink-including-pink-gradients-and-pink-highlight-labels-so-it-uses-a-live-animated-color-treatment-based-on-blue-yellow-and-black-no-pink-apply-this-to-existing-pink-text-styles-used-across-the-app-e-g-pink-bolt-result-text-pink-blue-gradient-text-and-ippb-pink-gold-labels-while-keeping-readability-on-the-dark-background",
+      "featureTitle": "Replace all UI text that is currently styled as pink (including pink gradients and pink-highlight labels) so it uses a live animated color treatment based on blue, yellow, and black (no pink). Apply this to existing pink text styles used across the app (e.g., pink bolt/result text, pink/blue gradient text, and IPPB pink/gold labels) while keeping readability on the dark background.",
       "files": [
+        "frontend/src/components/calculator/LiveCalculator.tsx",
+        "frontend/src/components/ippb/IppbOverlayDialog.tsx",
         "frontend/src/index.css"
       ],
       "components": [
@@ -87,10 +73,32 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-when-the-user-closes-the-bio-profile-overlay-show-a-rating-prompt-e-g-1-5-stars-and-capture-the-rating-so-it-is-visible-to-the-user-afterward-e-g-show-the-submitted-rating-confirmation-and-the-last-submitted-rating-persist-the-submitted-rating-in-the-backend-so-it-can-be-retrieved-later",
+      "featureTitle": "When the user closes the bio/profile overlay, show a rating prompt (e.g., 1–5 stars) and capture the rating so it is visible to the user afterward (e.g., show the submitted rating confirmation and the last submitted rating). Persist the submitted rating in the backend so it can be retrieved later.",
+      "files": [
+        "frontend/src/components/profile/BpmProfileCard.tsx",
+        "frontend/src/components/profile/ProfileRatingDialog.tsx",
+        "frontend/src/hooks/useProfileRating.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
       ],
       "confidence": "high"
     }
